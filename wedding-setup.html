@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Website Setup</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #FBF6EE;
+    color: #3D2B1A;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-bottom: 80px;
+  }
+
+  /* ── TOP BAR ── */
+  #topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    border-bottom: 2px solid #D4A853;
+    box-shadow: 0 2px 12px rgba(193,120,23,.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 20px;
+  }
+
+  #topbar h1 {
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    color: #C17817;
+    white-space: nowrap;
+    letter-spacing: .5px;
+  }
+
+  /* progress dots */
+  #progress-dots {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .pdot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #E8D5B0;
+    border: 2px solid #C17817;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C17817;
+    font-weight: 700;
+  }
+  .pdot:hover { background: #C17817; color: #fff; transform: scale(1.2); }
+  .pdot.active { background: #C17817; color: #fff; }
+
+  /* submit button */
+  .submit-btn {
+    background: linear-gradient(135deg, #2D7A3A, #1F5C2A);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 3px 12px rgba(45,122,58,.4);
+    transition: opacity .2s, transform .2s;
+    letter-spacing: .3px;
+  }
+  .submit-btn:hover { opacity: .9; transform: translateY(-1px); }
+  .submit-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+  /* submit footer */
+  #submit-footer {
+    max-width: 820px;
+    margin: 28px auto 48px;
+    padding: 0 16px;
+    text-align: center;
+  }
+  #submit-footer p {
+    font-size: 13px;
+    color: #9B7A5A;
+    margin-top: 10px;
+  }
+  .submit-footer-btn {
+    background: linear-gradient(135deg, #2D7A3A, #1F5C2A);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 48px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(45,122,58,.35);
+    transition: opacity .2s, transform .2s;
+    letter-spacing: .3px;
+  }
+  .submit-footer-btn:hover { opacity: .9; transform: translateY(-2px); }
+  .submit-footer-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+  /* overlay */
+  #submit-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  #submit-overlay.visible { display: flex; }
+  .overlay-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  }
+  .overlay-icon { font-size: 56px; margin-bottom: 16px; }
+  .overlay-title {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    color: #2D7A3A;
+    margin-bottom: 10px;
+  }
+  .overlay-title.error { color: #B33A3A; }
+  .overlay-msg { font-size: 14px; color: #5C3A1E; line-height: 1.6; }
+  .overlay-close {
+    margin-top: 24px;
+    padding: 10px 32px;
+    background: #2D7A3A;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .overlay-close.error { background: #B33A3A; }
+  .overlay-spinner {
+    width: 48px; height: 48px;
+    border: 5px solid #E8D5B0;
+    border-top-color: #2D7A3A;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin: 0 auto 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+
+  /* ── MAIN WRAPPER ── */
+  #main {
+    max-width: 820px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+
+  /* ── SECTION CARD ── */
+  .section-card {
+    background: #fff;
+    border: 1px solid #D4A853;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(193,120,23,.08);
+  }
+
+  .section-header {
+    background: linear-gradient(135deg, #C17817, #A0620F);
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    transition: opacity .15s;
+  }
+  .section-header:hover { opacity: .92; }
+
+  .sec-num {
+    background: rgba(255,255,255,.22);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .sec-emoji { font-size: 18px; flex-shrink: 0; }
+
+  .sec-title {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    flex: 1;
+  }
+
+  .toggle-arrow {
+    font-size: 14px;
+    transition: transform .3s;
+    flex-shrink: 0;
+  }
+  .section-card.open .toggle-arrow { transform: rotate(180deg); }
+
+  .section-body {
+    padding: 20px 24px;
+    display: none;
+    background: #fff;
+  }
+  .section-card.open .section-body { display: block; }
+
+  /* ── FORM ELEMENTS ── */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  label {
+    color: #5C3A1E;
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+  }
+
+  input[type="text"],
+  input[type="url"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  textarea {
+    border: 1px solid #D4A853;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #FFFDF7;
+    color: #3D2B1A;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    transition: border-color .2s, box-shadow .2s;
+    width: 100%;
+  }
+
+  input[type="text"]:focus,
+  input[type="url"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #C17817;
+    box-shadow: 0 0 0 3px rgba(193,120,23,.15);
+  }
+
+  textarea { min-height: 80px; resize: vertical; }
+
+  .hint {
+    font-size: 11px;
+    color: #9B7A5A;
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid #EDD9A3;
+    margin: 18px 0;
+  }
+
+  .subsection-title {
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #C17817;
+    margin: 16px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #EDD9A3;
+  }
+
+  /* ── CHAPTER CARDS ── */
+  .chapter-card {
+    border: 1px solid #E8D5B0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .chapter-header {
+    background: #FAF0DC;
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #C17817;
+    user-select: none;
+  }
+  .chapter-header .toggle-arrow { margin-left: auto; font-size: 12px; }
+  .chapter-card.open .chapter-header .toggle-arrow { transform: rotate(180deg); }
+  .chapter-body { display: none; padding: 14px 16px; background: #fff; }
+  .chapter-card.open .chapter-body { display: block; }
+
+  /* ── CHECKBOXES ── */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #5C3A1E;
+    cursor: pointer;
+    padding: 6px 10px;
+    background: #FFFDF7;
+    border: 1px solid #E8D5B0;
+    border-radius: 6px;
+    transition: background .15s, border-color .15s;
+  }
+  .checkbox-item:hover { background: #FFF5E0; border-color: #C17817; }
+  .checkbox-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #C17817;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ── PHOTO ROW ── */
+  .gphoto-row {
+    background: #FFFDF7;
+    border: 1px solid #E8D5B0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .gphoto-row-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: #C17817;
+    margin-bottom: 8px;
+  }
+
+  /* ── HOTEL / TRANSPORT ROW ── */
+  .entry-row {
+    background: #FFFDF7;
+    border: 1px solid #E8D5B0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .entry-row-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #C17817;
+    margin-bottom: 8px;
+  }
+
+  /* ── SPECIAL ROLES ── */
+  .role-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+
+  /* ── ADD BUTTONS ── */
+  .add-btn {
+    background: #FFF5E0;
+    border: 1px solid #C17817;
+    color: #C17817;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .add-btn:hover { background: #C17817; color: #fff; }
+
+  /* ── THEME SWATCHES ── */
+  #theme-swatches {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15);
+    display: inline-block;
+  }
+  #theme-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #5C3A1E;
+  }
+
+  /* ── PALETTE ROWS ── */
+  .palette-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .palette-row input[type="color"] {
+    width: 44px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid #D4A853;
+    padding: 2px;
+    cursor: pointer;
+    background: transparent;
+    flex-shrink: 0;
+  }
+
+  /* ── SPEED SLIDER ── */
+  input[type="range"] {
+    accent-color: #C17817;
+    width: 100%;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    #topbar h1 { font-size: 15px; }
+    #progress-dots { gap: 4px; }
+    .pdot { width: 14px; height: 14px; font-size: 7px; }
+
+    .section-body { padding: 14px; }
+    .field-row { grid-template-columns: 1fr; }
+    .role-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ TOP BAR ═══════════════════ -->
+<div id="topbar">
+  <h1>💍 Wedding Website Setup</h1>
+  <div id="progress-dots">
+    <div class="pdot active" onclick="jumpTo(0)" title="The Couple">1</div>
+    <div class="pdot" onclick="jumpTo(1)" title="The Venue">2</div>
+    <div class="pdot" onclick="jumpTo(2)" title="Our Story">3</div>
+    <div class="pdot" onclick="jumpTo(3)" title="Entourage">4</div>
+    <div class="pdot" onclick="jumpTo(4)" title="Gallery">5</div>
+    <div class="pdot" onclick="jumpTo(5)" title="Gifts">6</div>
+    <div class="pdot" onclick="jumpTo(6)" title="RSVP">7</div>
+    <div class="pdot" onclick="jumpTo(7)" title="Style">8</div>
+    <div class="pdot" onclick="jumpTo(8)" title="Travel">9</div>
+    <div class="pdot" onclick="jumpTo(9)" title="Music">10</div>
+    <div class="pdot" onclick="jumpTo(10)" title="Attire">11</div>
+    <div class="pdot" onclick="jumpTo(11)" title="Footer">12</div>
+  </div>
+  <button class="submit-btn" id="topSubmitBtn" onclick="submitForm()">✉️ Submit</button>
+</div>
+
+<div id="main">
+
+  <!-- ═══ SECTION 1: THE COUPLE ═══ -->
+  <div class="section-card open" id="sec-0">
+    <button class="section-header" onclick="toggleSection(0)">
+      <span class="sec-num">1</span>
+      <span class="sec-emoji">💑</span>
+      <span class="sec-title">The Couple</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="groomName">Groom's Name</label>
+            <input type="text" id="groomName" placeholder="Raymond">
+          </div>
+          <div class="field">
+            <label for="brideName">Bride's Name</label>
+            <input type="text" id="brideName" placeholder="Karen">
+          </div>
+        </div>
+        <div class="field">
+          <label for="fullNames">Names on Invitation</label>
+          <input type="text" id="fullNames" placeholder="Raymond &amp; Karen">
+          <span class="hint">Appears in script font as the main heading on your wedding website.</span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="weddingDate">Wedding Date</label>
+            <input type="text" id="weddingDate" placeholder="April 19, 2026">
+          </div>
+          <div class="field">
+            <label for="hashtag">Wedding Hashtag</label>
+            <input type="text" id="hashtag" placeholder="#RaymondAndKaren2026">
+          </div>
+        </div>
+        <div class="field">
+          <label for="weddingDateTime">Date &amp; Time for Countdown</label>
+          <input type="text" id="weddingDateTime" placeholder="April 19, 2026 16:30:00">
+          <span class="hint">Used to power the live countdown timer. Format: Month DD, YYYY HH:MM:SS (24-hour).</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: THE VENUE ═══ -->
+  <div class="section-card" id="sec-1">
+    <button class="section-header" onclick="toggleSection(1)">
+      <span class="sec-num">2</span>
+      <span class="sec-emoji">💒</span>
+      <span class="sec-title">The Venue</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field">
+          <label for="eventVenueName">Event Label</label>
+          <input type="text" id="eventVenueName" placeholder="The Ceremony &amp; Reception">
+        </div>
+        <div class="field">
+          <label for="eventVenueDate">Date Line</label>
+          <input type="text" id="eventVenueDate" placeholder="Sunday, April 19, 2026 at 4:00 PM">
+        </div>
+        <div class="field">
+          <label for="eventVenuePlace">Venue Name</label>
+          <input type="text" id="eventVenuePlace" placeholder="The Emerald Events Place">
+        </div>
+        <div class="field">
+          <label for="eventVenueAddress">Full Address</label>
+          <input type="text" id="eventVenueAddress" placeholder="Cabrera Rd, Antipolo City, Rizal">
+        </div>
+        <div class="field">
+          <label for="eventMapsUrl">Google Maps Link</label>
+          <input type="url" id="eventMapsUrl" placeholder="https://maps.google.com/...">
+          <span class="hint">The link that opens when guests click "Get Directions".</span>
+        </div>
+        <div class="field">
+          <label for="eventMapEmbed">Google Maps Embed URL</label>
+          <input type="url" id="eventMapEmbed" placeholder="https://www.google.com/maps/embed?pb=...">
+          <span class="hint">From Google Maps → Share → Embed a map → copy the <code>src</code> URL from the iframe snippet.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3: OUR STORY ═══ -->
+  <div class="section-card" id="sec-2">
+    <button class="section-header" onclick="toggleSection(2)">
+      <span class="sec-num">3</span>
+      <span class="sec-emoji">💌</span>
+      <span class="sec-title">Our Story</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field">
+          <label for="storyPullQuote">Pull Quote</label>
+          <textarea id="storyPullQuote" placeholder="From colleagues to forever..."></textarea>
+          <span class="hint">A short romantic quote that appears at the top of your story section.</span>
+        </div>
+      </div>
+
+      <div class="subsection-title">Story Chapters</div>
+
+      <!-- Chapter 1 -->
+      <div class="chapter-card open" id="chap-0">
+        <div class="chapter-header" onclick="toggleChapter(0)">
+          <span>💼</span> <span>Chapter 1: How We Met</span>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="chapter-body">
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-0-title">Title</label>
+                <input type="text" id="tl-0-title" value="How We Met">
+              </div>
+              <div class="field">
+                <label for="tl-0-emoji">Emoji</label>
+                <input type="text" id="tl-0-emoji" value="💼" style="max-width:70px">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-0-desc">Description</label>
+              <textarea id="tl-0-desc">We met as officemates, sharing the same workspace and daily routines that quietly built the foundation of something beautiful.</textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-0-image">Photo URL</label>
+                <input type="text" id="tl-0-image" placeholder="https://...">
+              </div>
+              <div class="field">
+                <label for="tl-0-caption">Photo Caption</label>
+                <input type="text" id="tl-0-caption" value="First Hello 💼">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-0-note">Handwritten Note</label>
+              <input type="text" id="tl-0-note" value="Where it all began ✨">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 2 -->
+      <div class="chapter-card" id="chap-1">
+        <div class="chapter-header" onclick="toggleChapter(1)">
+          <span>✨</span> <span>Chapter 2: A Spark</span>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="chapter-body">
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-1-title">Title</label>
+                <input type="text" id="tl-1-title" value="A Spark">
+              </div>
+              <div class="field">
+                <label for="tl-1-emoji">Emoji</label>
+                <input type="text" id="tl-1-emoji" value="✨" style="max-width:70px">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-1-desc">Description</label>
+              <textarea id="tl-1-desc">Over the years, a friendship quietly grew into something deeper — a warmth neither of us could ignore.</textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-1-image">Photo URL</label>
+                <input type="text" id="tl-1-image" placeholder="https://...">
+              </div>
+              <div class="field">
+                <label for="tl-1-caption">Photo Caption</label>
+                <input type="text" id="tl-1-caption" value="The Spark ✨">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-1-note">Handwritten Note</label>
+              <input type="text" id="tl-1-note" value="Something special 💕">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 3 -->
+      <div class="chapter-card" id="chap-2">
+        <div class="chapter-header" onclick="toggleChapter(2)">
+          <span>💕</span> <span>Chapter 3: Making It Official</span>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="chapter-body">
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-2-title">Title</label>
+                <input type="text" id="tl-2-title" value="Making It Official">
+              </div>
+              <div class="field">
+                <label for="tl-2-emoji">Emoji</label>
+                <input type="text" id="tl-2-emoji" value="💕" style="max-width:70px">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-2-desc">Description</label>
+              <textarea id="tl-2-desc">On June 9, 2024, we finally made it official — and the world felt perfectly right.</textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-2-image">Photo URL</label>
+                <input type="text" id="tl-2-image" placeholder="https://...">
+              </div>
+              <div class="field">
+                <label for="tl-2-caption">Photo Caption</label>
+                <input type="text" id="tl-2-caption" value="Made Official 💕">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-2-note">Handwritten Note</label>
+              <input type="text" id="tl-2-note" value="Finally ours! 🌟">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 4 -->
+      <div class="chapter-card" id="chap-3">
+        <div class="chapter-header" onclick="toggleChapter(3)">
+          <span>💍</span> <span>Chapter 4: To Forever</span>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="chapter-body">
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-3-title">Title</label>
+                <input type="text" id="tl-3-title" value="To Forever">
+              </div>
+              <div class="field">
+                <label for="tl-3-emoji">Emoji</label>
+                <input type="text" id="tl-3-emoji" value="💍" style="max-width:70px">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-3-desc">Description</label>
+              <textarea id="tl-3-desc">Now, here we are — about to get married! Our journey of love is just beginning its most beautiful chapter.</textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="tl-3-image">Photo URL</label>
+                <input type="text" id="tl-3-image" placeholder="https://...">
+              </div>
+              <div class="field">
+                <label for="tl-3-caption">Photo Caption</label>
+                <input type="text" id="tl-3-caption" value="To Forever 💍">
+              </div>
+            </div>
+            <div class="field">
+              <label for="tl-3-note">Handwritten Note</label>
+              <input type="text" id="tl-3-note" value="Here we go! 💫">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 4: THE ENTOURAGE ═══ -->
+  <div class="section-card" id="sec-3">
+    <button class="section-header" onclick="toggleSection(3)">
+      <span class="sec-num">4</span>
+      <span class="sec-emoji">👰</span>
+      <span class="sec-title">The Entourage</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="entourageGroomFull">Groom's Full Name</label>
+            <input type="text" id="entourageGroomFull" placeholder="Raymond dela Cruz">
+          </div>
+          <div class="field">
+            <label for="entourageBrideFull">Bride's Full Name</label>
+            <input type="text" id="entourageBrideFull" placeholder="Karen Santos">
+          </div>
+        </div>
+        <div class="field">
+          <label for="entourageCouplePhoto">Couple Photo URL</label>
+          <input type="url" id="entourageCouplePhoto" placeholder="https://...">
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="entourageGroomParents">Groom's Parents</label>
+            <textarea id="entourageGroomParents" placeholder="Juan dela Cruz&#10;Maria dela Cruz"></textarea>
+            <span class="hint">One name per line.</span>
+          </div>
+          <div class="field">
+            <label for="entourageBrideParents">Bride's Parents</label>
+            <textarea id="entourageBrideParents" placeholder="Pedro Santos&#10;Lourdes Santos"></textarea>
+            <span class="hint">One name per line.</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="entourageBestMan">Best Man</label>
+            <textarea id="entourageBestMan" placeholder="Michael Smith"></textarea>
+            <span class="hint">One name per line.</span>
+          </div>
+          <div class="field">
+            <label for="entourageMaids">Maid / Matron of Honor</label>
+            <textarea id="entourageMaids" placeholder="Sarah Johnson"></textarea>
+            <span class="hint">One name per line.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="entourageSponsors">Principal Sponsors</label>
+          <textarea id="entourageSponsors" placeholder="Mr. &amp; Mrs. Reyes&#10;Mr. &amp; Mrs. Garcia"></textarea>
+          <span class="hint">One name per line.</span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="entourageGroomsmen">Groomsmen</label>
+            <textarea id="entourageGroomsmen" placeholder="James Reyes&#10;Carlos Tan"></textarea>
+            <span class="hint">One name per line.</span>
+          </div>
+          <div class="field">
+            <label for="entourageBridesmaids">Bridesmaids</label>
+            <textarea id="entourageBridesmaids" placeholder="Ana Lopez&#10;Bea Cruz"></textarea>
+            <span class="hint">One name per line.</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="subsection-title">Special Roles</div>
+      <div id="specialRolesContainer"></div>
+      <button class="add-btn" onclick="addSpecialRole()" style="margin-top:4px">+ Add Role</button>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 5: GALLERY PHOTOS ═══ -->
+  <div class="section-card" id="sec-4">
+    <button class="section-header" onclick="toggleSection(4)">
+      <span class="sec-num">5</span>
+      <span class="sec-emoji">📷</span>
+      <span class="sec-title">Gallery Photos</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <p style="font-size:13px;color:#9B7A5A;margin-bottom:12px;">Add up to 12 photos for your gallery. Enter the image URL, a short caption, and an emoji for each.</p>
+      <div id="gPhotoContainer"></div>
+      <button class="add-btn" onclick="addGalleryPhoto()" id="addPhotoBtn">+ Add Photo</button>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 6: GIFTS & PAYMENT ═══ -->
+  <div class="section-card" id="sec-5">
+    <button class="section-header" onclick="toggleSection(5)">
+      <span class="sec-num">6</span>
+      <span class="sec-emoji">🎁</span>
+      <span class="sec-title">Gifts &amp; Payment</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field">
+          <label for="giftMessage">Gift Message</label>
+          <textarea id="giftMessage" placeholder="Your presence is the greatest gift of all. However, if you wish to give..."></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="giftBpiUrl">BPI QR Code Image URL</label>
+            <input type="url" id="giftBpiUrl" placeholder="https://...">
+          </div>
+          <div class="field">
+            <label for="giftGcashUrl">GCash QR Code Image URL</label>
+            <input type="url" id="giftGcashUrl" placeholder="https://...">
+          </div>
+        </div>
+        <div class="field">
+          <label for="hashtagMessage">Hashtag Message</label>
+          <textarea id="hashtagMessage" placeholder="Share your photos using our wedding hashtag!"></textarea>
+          <span class="hint">Shown below the gift section, encouraging guests to post with your hashtag.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 7: RSVP ═══ -->
+  <div class="section-card" id="sec-6">
+    <button class="section-header" onclick="toggleSection(6)">
+      <span class="sec-num">7</span>
+      <span class="sec-emoji">✉️</span>
+      <span class="sec-title">RSVP</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field">
+          <label for="rsvpDeadline">RSVP Deadline</label>
+          <input type="text" id="rsvpDeadline" placeholder="PLEASE RSVP BY MARCH 14, 2026">
+        </div>
+        <div class="field">
+          <label for="rsvpIntro">Intro Message</label>
+          <textarea id="rsvpIntro" placeholder="Kindly let us know if you can make it..."></textarea>
+        </div>
+        <div class="field">
+          <label for="rsvpFormUrl">Google / MS Forms URL</label>
+          <input type="url" id="rsvpFormUrl" placeholder="https://forms.google.com/...">
+          <span class="hint">Guests will be redirected to this form to submit their RSVP.</span>
+        </div>
+        <div class="field" style="max-width:240px">
+          <label for="rsvpGuestCount">Seats Reserved Per Invitation</label>
+          <input type="number" id="rsvpGuestCount" min="0" max="20" value="2">
+          <span class="hint">Set to 0 to hide the seat count on the website.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 8: STYLE & THEME ═══ -->
+  <div class="section-card" id="sec-7">
+    <button class="section-header" onclick="toggleSection(7)">
+      <span class="sec-num">8</span>
+      <span class="sec-emoji">🎨</span>
+      <span class="sec-title">Style &amp; Theme</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field">
+          <label for="themeSelect">Color Theme</label>
+          <select id="themeSelect" onchange="updateThemePreview()">
+            <option value="golden-hour">Golden Hour</option>
+            <option value="dusty-rose">Dusty Rose</option>
+            <option value="sage-ivory">Sage &amp; Ivory</option>
+            <option value="midnight-navy">Midnight Navy</option>
+            <option value="lavender-pearl">Lavender &amp; Pearl</option>
+            <option value="burgundy-gold">Burgundy &amp; Gold</option>
+            <option value="blush-champagne">Blush &amp; Champagne</option>
+            <option value="emerald-gold">Emerald &amp; Gold</option>
+            <option value="french-blue">French Blue</option>
+            <option value="terracotta">Terracotta</option>
+            <option value="moody-garden">Moody Garden</option>
+          </select>
+          <div id="theme-preview">
+            <div id="theme-swatches"></div>
+            <span id="theme-label" style="font-style:italic"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="divStyle">Divider Style</label>
+          <select id="divStyle">
+            <option value="flower">Flower</option>
+            <option value="diamond">Diamond</option>
+            <option value="botanical">Botanical</option>
+            <option value="waxseal">Wax Seal</option>
+            <option value="feather">Feather</option>
+            <option value="sparkle">Sparkle</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="subsection-title">Background Effects</div>
+      <div class="checkbox-grid">
+        <label class="checkbox-item"><input type="checkbox" id="bgBokeh" checked> Bokeh Lights</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgDust" checked> Dust Particles</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgSparkles" checked> Sparkles</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgRays" checked> Light Rays</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgHaze" checked> Atmospheric Haze</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgColorTemp" checked> Color Temperature</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgPetals"> Floating Petals</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgGoldRain"> Gold Rain</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgFireflies"> Fireflies</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgGlitter"> Glitter Shimmer</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgAurora"> Aurora Veil</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgStars"> Star Field</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgCandle"> Candle Vignette</label>
+        <label class="checkbox-item"><input type="checkbox" id="bgRibbons"> Floating Ribbons</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 9: TRAVEL & STAY ═══ -->
+  <div class="section-card" id="sec-8">
+    <button class="section-header" onclick="toggleSection(8)">
+      <span class="sec-num">9</span>
+      <span class="sec-emoji">🏨</span>
+      <span class="sec-title">Travel &amp; Stay</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <label class="checkbox-item" style="display:inline-flex;width:auto">
+          <input type="checkbox" id="travelEnabled" checked> Show Travel &amp; Stay section on website
+        </label>
+        <div class="field">
+          <label for="travelMapEmbed">Travel Section Map Embed URL</label>
+          <input type="url" id="travelMapEmbed" placeholder="https://www.google.com/maps/embed?pb=...">
+        </div>
+      </div>
+
+      <div class="subsection-title">Hotels / Accommodations</div>
+      <p style="font-size:13px;color:#9B7A5A;margin-bottom:10px;">List nearby hotels or accommodations for your guests.</p>
+      <div id="hotelContainer"></div>
+      <button class="add-btn" onclick="addHotel()" id="addHotelBtn">+ Add Hotel</button>
+
+      <hr class="section-divider">
+      <div class="subsection-title">Transportation Options</div>
+      <p style="font-size:13px;color:#9B7A5A;margin-bottom:10px;">Describe how guests can get to the venue.</p>
+      <div id="transportContainer"></div>
+      <button class="add-btn" onclick="addTransport()" id="addTransportBtn">+ Add Transport</button>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 10: MUSIC ═══ -->
+  <div class="section-card" id="sec-9">
+    <button class="section-header" onclick="toggleSection(9)">
+      <span class="sec-num">10</span>
+      <span class="sec-emoji">🎵</span>
+      <span class="sec-title">Music</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <label class="checkbox-item" style="display:inline-flex;width:auto">
+          <input type="checkbox" id="musicEnabled" checked> Enable background music on website
+        </label>
+        <div class="field">
+          <label for="musicUrl">Audio File URL</label>
+          <input type="url" id="musicUrl" placeholder="https://example.com/wedding-song.mp3">
+          <span class="hint">A direct link to an .mp3 or .ogg audio file. Guests can choose to play or skip.</span>
+        </div>
+        <div class="field">
+          <label for="musicWelcome">Welcome Message</label>
+          <textarea id="musicWelcome" placeholder="We've prepared a little music for your visit. Would you like to turn it on?"></textarea>
+          <span class="hint">Shown to guests in the music prompt when they first arrive on the website.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 11: ATTIRE ═══ -->
+  <div class="section-card" id="sec-10">
+    <button class="section-header" onclick="toggleSection(10)">
+      <span class="sec-num">11</span>
+      <span class="sec-emoji">👗</span>
+      <span class="sec-title">Attire</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="attireTheme">Attire Theme Name</label>
+            <input type="text" id="attireTheme" placeholder="Golden Hour Theme">
+          </div>
+          <div class="field">
+            <label for="attireImage">Attire Guide Image URL</label>
+            <input type="url" id="attireImage" placeholder="https://...">
+          </div>
+        </div>
+        <div class="field">
+          <label for="attireNote">Attire Note</label>
+          <textarea id="attireNote" placeholder="Please dress in the golden hour palette. Avoid wearing white or black."></textarea>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="subsection-title">Color Palette</div>
+      <p style="font-size:13px;color:#9B7A5A;margin-bottom:12px;">Define up to 6 colors for your wedding palette.</p>
+      <div id="paletteContainer"></div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 12: FOOTER & FINISHING TOUCHES ═══ -->
+  <div class="section-card" id="sec-11">
+    <button class="section-header" onclick="toggleSection(11)">
+      <span class="sec-num">12</span>
+      <span class="sec-emoji">👣</span>
+      <span class="sec-title">Footer &amp; Finishing Touches</span>
+      <span class="toggle-arrow">▼</span>
+    </button>
+    <div class="section-body">
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="footerThankYou">Thank You Text</label>
+            <input type="text" id="footerThankYou" value="Thank You">
+          </div>
+          <div class="field">
+            <label for="heroVideoUrl">Hero Video URL</label>
+            <input type="url" id="heroVideoUrl" placeholder="https://...">
+            <span class="hint">Leave blank to show a static photo on the hero section.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="footerTagline">Footer Tagline</label>
+          <textarea id="footerTagline" placeholder="With love and gratitude, Raymond &amp; Karen"></textarea>
+        </div>
+
+        <hr class="section-divider">
+        <div class="subsection-title">Auto-Scroll</div>
+        <label class="checkbox-item" style="display:inline-flex;width:auto;margin-bottom:12px">
+          <input type="checkbox" id="autoScrollEnabled"> Enable auto-scroll on website
+        </label>
+        <div class="field">
+          <label for="autoScrollSpeed">Auto-Scroll Speed: <span id="speedLabel">1</span>x</label>
+          <input type="range" id="autoScrollSpeed" min="0.5" max="5" step="0.5" value="1"
+            oninput="document.getElementById('speedLabel').textContent=this.value">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#9B7A5A;margin-top:2px">
+            <span>Slow (0.5x)</span><span>Fast (5x)</span>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #F0E0C8;margin:20px 0;">
+        <div class="field">
+          <label for="submissionNotes">Notes / Special Requests <span style="font-weight:400;color:#9B7A5A;">(optional)</span></label>
+          <textarea id="submissionNotes" placeholder="Anything else you'd like us to know — special preferences, questions, requests…" style="min-height:90px;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end #main -->
+
+<!-- Submit footer -->
+<div id="submit-footer">
+  <button class="submit-footer-btn" id="footerSubmitBtn" onclick="submitForm()">✉️ Submit Wedding Details</button>
+  <p>All your answers will be saved to our records. We'll reach out to confirm and start building your website.</p>
+</div>
+
+<!-- Result overlay -->
+<div id="submit-overlay">
+  <div class="overlay-card" id="overlay-card">
+    <div class="overlay-spinner" id="overlay-spinner"></div>
+    <div class="overlay-icon" id="overlay-icon" style="display:none;"></div>
+    <div class="overlay-title" id="overlay-title">Submitting…</div>
+    <div class="overlay-msg" id="overlay-msg">Please wait while we save your details.</div>
+    <button class="overlay-close" id="overlay-close" style="display:none;" onclick="closeOverlay()">Close</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  THEME DATA
+// ═══════════════════════════════════════════════════
+const THEMES = {
+  'golden-hour':     { label: 'Golden Hour',     colors: ['#C17817','#F5C842','#FBF6EE','#3D2B1A'] },
+  'dusty-rose':      { label: 'Dusty Rose',      colors: ['#C4817A','#E8B4B0','#FDF5F5','#3D2020'] },
+  'sage-ivory':      { label: 'Sage & Ivory',    colors: ['#7A9B7A','#B8D4B0','#F5F5EE','#2A3D2A'] },
+  'midnight-navy':   { label: 'Midnight Navy',   colors: ['#1A2B4A','#4A6FA5','#EEF2F8','#0D1A2E'] },
+  'lavender-pearl':  { label: 'Lavender & Pearl',colors: ['#8B7AB5','#C4B8E0','#F5F2FA','#2D2040'] },
+  'burgundy-gold':   { label: 'Burgundy & Gold', colors: ['#7A1A2E','#C17817','#FAF0F2','#2E0A14'] },
+  'blush-champagne': { label: 'Blush & Champagne',colors:['#E8B4B0','#D4A853','#FDF8F5','#3D2020'] },
+  'emerald-gold':    { label: 'Emerald & Gold',  colors: ['#2A6B4A','#C17817','#F0FAF4','#0A2E1A'] },
+  'french-blue':     { label: 'French Blue',     colors: ['#4A6FA5','#8FADD4','#F0F4FA','#1A2B4A'] },
+  'terracotta':      { label: 'Terracotta',      colors: ['#C06B42','#E8A87C','#FAF3EE','#3D1A0A'] },
+  'moody-garden':    { label: 'Moody Garden',    colors: ['#3D5C3A','#8A6BAD','#F5F0FA','#1A2E18'] },
+};
+
+function updateThemePreview() {
+  const val = document.getElementById('themeSelect').value;
+  const t = THEMES[val] || THEMES['golden-hour'];
+  const swatchEl = document.getElementById('theme-swatches');
+  swatchEl.innerHTML = t.colors.map(c =>
+    `<span class="swatch" style="background:${c}"></span>`
+  ).join('');
+  document.getElementById('theme-label').textContent = t.label;
+}
+
+// ═══════════════════════════════════════════════════
+//  SECTION ACCORDION
+// ═══════════════════════════════════════════════════
+function toggleSection(idx) {
+  const card = document.getElementById('sec-' + idx);
+  const wasOpen = card.classList.contains('open');
+  card.classList.toggle('open', !wasOpen);
+  // update progress dot
+  const dots = document.querySelectorAll('.pdot');
+  if (dots[idx]) dots[idx].classList.toggle('active', !wasOpen);
+}
+
+function jumpTo(idx) {
+  const card = document.getElementById('sec-' + idx);
+  if (!card.classList.contains('open')) {
+    card.classList.add('open');
+    const dots = document.querySelectorAll('.pdot');
+    if (dots[idx]) dots[idx].classList.add('active');
+  }
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ═══════════════════════════════════════════════════
+//  CHAPTER ACCORDION
+// ═══════════════════════════════════════════════════
+function toggleChapter(idx) {
+  const card = document.getElementById('chap-' + idx);
+  card.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════
+//  SPECIAL ROLES
+// ═══════════════════════════════════════════════════
+let specialRoleCount = 0;
+
+function addSpecialRole(name='', role='') {
+  const container = document.getElementById('specialRolesContainer');
+  const i = specialRoleCount++;
+  const div = document.createElement('div');
+  div.className = 'role-row';
+  div.innerHTML = `
+    <div class="field">
+      <label for="specialRole-${i}-name">Person's Name</label>
+      <input type="text" id="specialRole-${i}-name" value="${escHtml(name)}" placeholder="Full Name">
+    </div>
+    <div class="field">
+      <label for="specialRole-${i}-role">Role</label>
+      <input type="text" id="specialRole-${i}-role" value="${escHtml(role)}" placeholder="e.g. Ring Bearer, Flower Girl">
+    </div>`;
+  container.appendChild(div);
+}
+
+// ═══════════════════════════════════════════════════
+//  GALLERY PHOTOS
+// ═══════════════════════════════════════════════════
+let photoCount = 0;
+
+function addGalleryPhoto(src='', caption='', emoji='💕') {
+  const container = document.getElementById('gPhotoContainer');
+  const i = photoCount++;
+  if (i >= 12) return;
+  const div = document.createElement('div');
+  div.className = 'gphoto-row';
+  div.dataset.index = i;
+  div.innerHTML = `
+    <div class="gphoto-row-header">Photo ${i + 1}</div>
+    <div class="field-group">
+      <div class="field">
+        <label for="gPhoto-${i}-src">Photo URL</label>
+        <input type="url" id="gPhoto-${i}-src" value="${escHtml(src)}" placeholder="https://...">
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="field" style="flex:1">
+          <label for="gPhoto-${i}-caption">Caption</label>
+          <input type="text" id="gPhoto-${i}-caption" value="${escHtml(caption)}" placeholder="A magical moment">
+        </div>
+        <div class="field" style="max-width:80px">
+          <label for="gPhoto-${i}-emoji">Emoji</label>
+          <input type="text" id="gPhoto-${i}-emoji" value="${escHtml(emoji)}" placeholder="💕">
+        </div>
+      </div>
+    </div>`;
+  container.appendChild(div);
+  if (photoCount >= 12) {
+    document.getElementById('addPhotoBtn').disabled = true;
+    document.getElementById('addPhotoBtn').textContent = 'Max 12 photos reached';
+  }
+}
+
+// ═══════════════════════════════════════════════════
+//  HOTELS
+// ═══════════════════════════════════════════════════
+let hotelCount = 0;
+
+function addHotel() {
+  if (hotelCount >= 5) return;
+  const container = document.getElementById('hotelContainer');
+  const i = hotelCount++;
+  const div = document.createElement('div');
+  div.className = 'entry-row';
+  div.innerHTML = `
+    <div class="entry-row-title">Hotel ${i + 1}</div>
+    <div class="field-group">
+      <div class="field-row">
+        <div class="field">
+          <label for="hotel-${i}-name">Hotel Name</label>
+          <input type="text" id="hotel-${i}-name" placeholder="Grand Hotel">
+        </div>
+        <div class="field">
+          <label for="hotel-${i}-dist">Distance from Venue</label>
+          <input type="text" id="hotel-${i}-dist" placeholder="2.5 km from venue">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="hotel-${i}-price">Price Range</label>
+          <input type="text" id="hotel-${i}-price" placeholder="₱2,500–₱4,500/night">
+        </div>
+        <div class="field">
+          <label for="hotel-${i}-url">Google Maps / Booking URL</label>
+          <input type="url" id="hotel-${i}-url" placeholder="https://...">
+        </div>
+      </div>
+    </div>`;
+  container.appendChild(div);
+  if (hotelCount >= 5) {
+    document.getElementById('addHotelBtn').disabled = true;
+    document.getElementById('addHotelBtn').textContent = 'Max 5 hotels reached';
+  }
+}
+
+// ═══════════════════════════════════════════════════
+//  TRANSPORT
+// ═══════════════════════════════════════════════════
+let transportCount = 0;
+
+function addTransport() {
+  if (transportCount >= 5) return;
+  const container = document.getElementById('transportContainer');
+  const i = transportCount++;
+  const div = document.createElement('div');
+  div.className = 'entry-row';
+  div.innerHTML = `
+    <div class="entry-row-title">Transport Option ${i + 1}</div>
+    <div class="field-group">
+      <div class="field">
+        <label for="transport-${i}-mode">Mode of Transport</label>
+        <input type="text" id="transport-${i}-mode" placeholder="e.g. Car, Grab, Shuttle">
+      </div>
+      <div class="field">
+        <label for="transport-${i}-d0">Detail Line 1</label>
+        <input type="text" id="transport-${i}-d0" placeholder="e.g. Grab / Angkas available nearby">
+      </div>
+      <div class="field">
+        <label for="transport-${i}-d1">Detail Line 2</label>
+        <input type="text" id="transport-${i}-d1" placeholder="e.g. Free parking available on-site">
+      </div>
+      <div class="field">
+        <label for="transport-${i}-d2">Detail Line 3</label>
+        <input type="text" id="transport-${i}-d2" placeholder="e.g. Approx. 30 min from Marikina">
+      </div>
+    </div>`;
+  container.appendChild(div);
+}
+
+// ═══════════════════════════════════════════════════
+//  COLOR PALETTE
+// ═══════════════════════════════════════════════════
+const PALETTE_DEFAULTS = [
+  { color: '#E8B855', name: 'Golden Yellow' },
+  { color: '#C97442', name: 'Burnt Orange' },
+  { color: '#8E4232', name: 'Rust' },
+  { color: '#E5D5C3', name: 'Champagne' },
+  { color: '#9CA894', name: 'Sage Green' },
+  { color: '#F4E8A8', name: 'Soft Yellow' },
+];
+
+function buildPaletteRows() {
+  const container = document.getElementById('paletteContainer');
+  PALETTE_DEFAULTS.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'palette-row';
+    div.innerHTML = `
+      <input type="color" id="pal-${i}-color" value="${p.color}">
+      <div class="field" style="flex:1">
+        <label for="pal-${i}-name">Color Name</label>
+        <input type="text" id="pal-${i}-name" value="${p.name}" placeholder="Color name">
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+
+// ═══════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════
+function escHtml(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function v(id) { return document.getElementById(id)?.value ?? ''; }
+function chk(id) { return document.getElementById(id)?.checked ?? false; }
+
+// ═══════════════════════════════════════════════════
+//  BUILD CONFIG
+// ═══════════════════════════════════════════════════
+function buildConfig() {
+  // Hotels
+  const hotels = [];
+  for (let i = 0; i < 5; i++) {
+    const n = v(`hotel-${i}-name`);
+    if (n.trim()) hotels.push({ name: n, distance: v(`hotel-${i}-dist`), price: v(`hotel-${i}-price`), mapUrl: v(`hotel-${i}-url`) });
+  }
+
+  // Transport
+  const transport = [];
+  for (let i = 0; i < 5; i++) {
+    const m = v(`transport-${i}-mode`);
+    if (m.trim()) {
+      const details = [v(`transport-${i}-d0`), v(`transport-${i}-d1`), v(`transport-${i}-d2`)].filter(Boolean);
+      transport.push({ mode: m, details });
+    }
+  }
+
+  // Gallery photos
+  const photos = [];
+  document.querySelectorAll('.gphoto-row').forEach(row => {
+    const i = row.dataset.index;
+    const src = v(`gPhoto-${i}-src`);
+    if (src.trim()) photos.push({ src, alt: 'Gallery ' + (parseInt(i)+1), emoji: v(`gPhoto-${i}-emoji`) || '💕', caption: v(`gPhoto-${i}-caption`) });
+  });
+
+  // Special roles
+  const specialRoles = [];
+  for (let i = 0; i < specialRoleCount; i++) {
+    const name = v(`specialRole-${i}-name`);
+    if (name?.trim()) specialRoles.push({ name, role: v(`specialRole-${i}-role`) });
+  }
+
+  // Attire palette
+  const palette = [];
+  for (let i = 0; i < 6; i++) {
+    palette.push({ name: v(`pal-${i}-name`), color: v(`pal-${i}-color`) });
+  }
+
+  const tl = (i, f) => v(`tl-${i}-${f}`);
+
+  return {
+    theme: v('themeSelect') || 'golden-hour',
+    autoScroll: {
+      enabled: chk('autoScrollEnabled'),
+      speed: parseFloat(v('autoScrollSpeed')) || 1,
+    },
+    couple: {
+      groomName: v('groomName'),
+      brideName: v('brideName'),
+      fullNames: v('fullNames'),
+      weddingDate: v('weddingDate'),
+      weddingDateTime: v('weddingDateTime'),
+      hashtag: v('hashtag'),
+    },
+    hero: {
+      videoUrl: v('heroVideoUrl'),
+      tagline: "WE'RE GETTING MARRIED",
+      scrollText: 'Scroll to explore',
+      animations: { lensFlare: true, floatingDots: true },
+    },
+    countdown: { title: 'Counting Down', subtitle: 'UNTIL OUR BIG DAY' },
+    story: {
+      title: 'Our Story',
+      subtitle: 'A JOURNEY OF LOVE',
+      pullQuote: v('storyPullQuote'),
+      timeline: [
+        { direction:'left',  title:tl(0,'title'), description:tl(0,'desc'), descriptionClass:'drop-cap', image:tl(0,'image'), imageAlt:tl(0,'title'), polaroidCaption:tl(0,'caption'), hiddenMessageTitle:'Hidden Memory', hiddenMessageText:tl(0,'desc'), emoji:tl(0,'emoji'), handwrittenNote:tl(0,'note') },
+        { direction:'right', title:tl(1,'title'), description:tl(1,'desc'), descriptionClass:'',         image:tl(1,'image'), imageAlt:tl(1,'title'), polaroidCaption:tl(1,'caption'), hiddenMessageTitle:'Secret Moment',  hiddenMessageText:tl(1,'desc'), emoji:tl(1,'emoji'), handwrittenNote:tl(1,'note') },
+        { direction:'left',  title:tl(2,'title'), description:tl(2,'desc'), descriptionClass:'',         image:tl(2,'image'), imageAlt:tl(2,'title'), polaroidCaption:tl(2,'caption'), hiddenMessageTitle:'Our Promise',    hiddenMessageText:tl(2,'desc'), emoji:tl(2,'emoji'), handwrittenNote:tl(2,'note') },
+        { direction:'right', title:tl(3,'title'), description:tl(3,'desc'), descriptionClass:'',         image:tl(3,'image'), imageAlt:tl(3,'title'), polaroidCaption:tl(3,'caption'), hiddenMessageTitle:'Our Future',     hiddenMessageText:tl(3,'desc'), emoji:tl(3,'emoji'), handwrittenNote:tl(3,'note') },
+      ],
+    },
+    event: {
+      title: 'The Wedding',
+      subtitle: 'JOIN US TO CELEBRATE',
+      venueName:    v('eventVenueName'),
+      venueDate:    v('eventVenueDate'),
+      venuePlace:   v('eventVenuePlace'),
+      venueAddress: v('eventVenueAddress'),
+      venueMapsUrl: v('eventMapsUrl'),
+      mapEmbed:     v('eventMapEmbed'),
+    },
+    attire: {
+      title: 'Attire',
+      theme: v('attireTheme'),
+      guideImage: v('attireImage'),
+      note: v('attireNote'),
+      palette,
+    },
+    entourage: {
+      title: 'Our Entourage',
+      subtitle: 'THE PEOPLE WHO STAND WITH US',
+      couplePhoto:       v('entourageCouplePhoto'),
+      groomFullName:     v('entourageGroomFull'),
+      brideFullName:     v('entourageBrideFull'),
+      groomParents:      v('entourageGroomParents').split('\n').map(s=>s.trim()).filter(Boolean),
+      brideParents:      v('entourageBrideParents').split('\n').map(s=>s.trim()).filter(Boolean),
+      bestMan:           v('entourageBestMan').split('\n').map(s=>s.trim()).filter(Boolean),
+      maidsOfHonor:      v('entourageMaids').split('\n').map(s=>s.trim()).filter(Boolean),
+      principalSponsors: v('entourageSponsors').split('\n').map(s=>s.trim()).filter(Boolean),
+      groomsmen:         v('entourageGroomsmen').split('\n').map(s=>s.trim()).filter(Boolean),
+      bridesmaids:       v('entourageBridesmaids').split('\n').map(s=>s.trim()).filter(Boolean),
+      specialRoles,
+    },
+    gallery: {
+      title: 'Gallery',
+      subtitle: 'CHERISHED MOMENTS',
+      photos,
+    },
+    gifts: {
+      giftMessage:    v('giftMessage'),
+      bpiQrUrl:       v('giftBpiUrl'),
+      gcashQrUrl:     v('giftGcashUrl'),
+      hashtagMessage: v('hashtagMessage'),
+    },
+    rsvp: {
+      title: "Will You Be There?",
+      deadline:      v('rsvpDeadline'),
+      intro:         v('rsvpIntro'),
+      googleFormUrl: v('rsvpFormUrl'),
+      guestCount:    parseInt(v('rsvpGuestCount')) || 0,
+    },
+    travel: {
+      enabled:   chk('travelEnabled'),
+      title:     'Travel & Stay',
+      subtitle:  'ACCOMMODATION & TRANSPORTATION',
+      mapEmbed:  v('travelMapEmbed'),
+      hotels,
+      transport,
+    },
+    photoTips: {
+      enabled: true,
+      title:           '📸 Golden Hour Photography',
+      subtitle:        'Capture the Perfect Moment',
+      sunsetTime:      '6:45 PM',
+      goldenHourRange: '5:45 PM - 6:45 PM',
+      bestPhotoTime:   '6:00 PM - 6:30 PM',
+      tips: [
+        { title: 'Best Time to Shoot', text: 'The golden hour occurs approximately 1 hour before sunset.' },
+        { title: 'Face the Light', text: 'Position yourself with the sun behind or to the side for that warm, glowing effect.' },
+        { title: 'Silhouettes & Backlighting', text: 'For dramatic photos, try shooting directly into the sun for stunning silhouettes.' },
+        { title: 'Camera Settings', text: 'Lower ISO (100-400), wider aperture (f/1.8-f/4), and adjust white balance to Cloudy or Shade.' },
+      ],
+    },
+    footer: {
+      thankYou: v('footerThankYou'),
+      tagline:  v('footerTagline'),
+    },
+    music: {
+      enabled:      chk('musicEnabled'),
+      audioUrl:     v('musicUrl'),
+      welcomeText:  v('musicWelcome'),
+      playLabel:    'Play Music',
+      silenceLabel: 'Continue in Silence',
+    },
+    background: {
+      bokeh:            chk('bgBokeh'),
+      dustParticles:    chk('bgDust'),
+      sparkles:         chk('bgSparkles'),
+      lightRays:        chk('bgRays'),
+      atmosphericHaze:  chk('bgHaze'),
+      colorTemperature: chk('bgColorTemp'),
+      floatingPetals:   chk('bgPetals'),
+      petalImages: [
+        'https://exi0r.github.io/wedding/image/yellowpet1.png',
+        'https://exi0r.github.io/wedding/image/yellowpet2.png',
+        'https://exi0r.github.io/wedding/image/yellowpet3.png',
+      ],
+      goldRain:        chk('bgGoldRain'),
+      fireflies:       chk('bgFireflies'),
+      glitterShimmer:  chk('bgGlitter'),
+      auroraVeil:      chk('bgAurora'),
+      starField:       chk('bgStars'),
+      candleVignette:  chk('bgCandle'),
+      floatingRibbons: chk('bgRibbons'),
+      ribbonImages: [
+        'https://exi0r.github.io/wedding/image/ribbon1.png',
+        'https://exi0r.github.io/wedding/image/ribbon2.png',
+        'https://exi0r.github.io/wedding/image/ribbon3.png',
+      ],
+      particleAmount: 1,
+      particleSize:   1,
+      particleSpeed:  1,
+    },
+    dividers: {
+      show:  true,
+      style: v('divStyle') || 'flower',
+    },
+  };
+}
+
+
+// ═══════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════
+(function init() {
+  // Theme preview
+  updateThemePreview();
+
+  // Special roles — start with 3
+  addSpecialRole('', '');
+  addSpecialRole('', '');
+  addSpecialRole('', '');
+
+  // Gallery — start with 6
+  for (let i = 0; i < 6; i++) addGalleryPhoto();
+
+  // Hotels — start with 3
+  addHotel(); addHotel(); addHotel();
+
+  // Transport — start with 3
+  addTransport(); addTransport(); addTransport();
+
+  // Palette rows
+  buildPaletteRows();
+
+  // Progress dots: mark section 1 active
+  document.querySelectorAll('.pdot')[0].classList.add('active');
+
+  // Intersection observer to highlight active section dot
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        const match = id.match(/^sec-(\d+)$/);
+        if (match) {
+          const idx = parseInt(match[1]);
+          document.querySelectorAll('.pdot').forEach((d,i) => {
+            d.classList.toggle('active', i === idx);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-60px 0px -60px 0px' });
+
+  document.querySelectorAll('.section-card').forEach(card => observer.observe(card));
+})();
+
+// ═══════════════════════════════════════════════════
+//  GOOGLE SHEETS SUBMISSION
+// ═══════════════════════════════════════════════════
+
+// ▼ Paste your Google Apps Script Web App URL here after deploying
+const APPS_SCRIPT_URL = https://script.google.com/macros/s/AKfycbzjnBQcu9hb3JsTT6a_99mp3WHytzzNhBJI6U9CPYmAF7MjIDI_K3-KEn2zU9ef7pvr/exec;
+
+function submitForm() {
+  const groom = document.getElementById('groomName')?.value.trim();
+  const bride  = document.getElementById('brideName')?.value.trim();
+
+  if (!groom || !bride) {
+    alert('Please fill in the Groom\'s Name and Bride\'s Name before submitting (Section 1).');
+    document.getElementById('sec-0').classList.add('open');
+    document.getElementById('groomName').focus();
+    return;
+  }
+
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    alert('The Google Apps Script URL has not been configured yet. Please contact the website administrator.');
+    return;
+  }
+
+  // Show loading overlay
+  showOverlay('loading');
+
+  // Disable buttons
+  setSubmitBtns(true);
+
+  // Build payload
+  const cfg = buildConfig();
+  const payload = {
+    submissionId:  randomId(),
+    submittedAt:   new Date().toISOString(),
+    groomName:     cfg.couple.groomName,
+    brideName:     cfg.couple.brideName,
+    weddingDate:   cfg.couple.weddingDate,
+    venuePlace:    cfg.event.venuePlace,
+    venueAddress:  cfg.event.venueAddress,
+    rsvpUrl:       cfg.rsvp.googleFormUrl,
+    theme:         cfg.theme,
+    musicEnabled:  cfg.music.enabled,
+    travelEnabled: cfg.travel.enabled,
+    notes:         document.getElementById('submissionNotes')?.value.trim() || '',
+    fullConfig:    JSON.stringify(cfg),
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method:  'POST',
+    mode:    'no-cors',         // required for Apps Script on static hosts
+    headers: { 'Content-Type': 'text/plain' },
+    body:    JSON.stringify(payload),
+  })
+  .then(() => {
+    showOverlay('success', groom, bride);
+  })
+  .catch(() => {
+    showOverlay('error');
+  })
+  .finally(() => {
+    setSubmitBtns(false);
+  });
+}
+
+function setSubmitBtns(disabled) {
+  ['topSubmitBtn', 'footerSubmitBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = disabled;
+  });
+}
+
+function showOverlay(state, groom, bride) {
+  const overlay  = document.getElementById('submit-overlay');
+  const spinner  = document.getElementById('overlay-spinner');
+  const icon     = document.getElementById('overlay-icon');
+  const title    = document.getElementById('overlay-title');
+  const msg      = document.getElementById('overlay-msg');
+  const closeBtn = document.getElementById('overlay-close');
+
+  overlay.classList.add('visible');
+
+  if (state === 'loading') {
+    spinner.style.display  = 'block';
+    icon.style.display     = 'none';
+    title.textContent      = 'Submitting…';
+    title.className        = 'overlay-title';
+    msg.textContent        = 'Please wait while we save your details.';
+    closeBtn.style.display = 'none';
+  } else if (state === 'success') {
+    spinner.style.display  = 'none';
+    icon.style.display     = 'block';
+    icon.textContent       = '🎉';
+    title.textContent      = 'Details Received!';
+    title.className        = 'overlay-title';
+    msg.innerHTML          = `Thank you, <strong>${escHtml(groom)} & ${escHtml(bride)}</strong>!<br><br>Your wedding details have been saved. We'll be in touch soon to confirm and start building your website.`;
+    closeBtn.style.display = 'inline-block';
+    closeBtn.className     = 'overlay-close';
+    closeBtn.textContent   = 'Done';
+  } else {
+    spinner.style.display  = 'none';
+    icon.style.display     = 'block';
+    icon.textContent       = '⚠️';
+    title.textContent      = 'Something went wrong';
+    title.className        = 'overlay-title error';
+    msg.textContent        = 'We couldn\'t save your details right now. Please try again or contact us directly.';
+    closeBtn.style.display = 'inline-block';
+    closeBtn.className     = 'overlay-close error';
+    closeBtn.textContent   = 'Close';
+  }
+}
+
+function closeOverlay() {
+  document.getElementById('submit-overlay').classList.remove('visible');
+}
+
+function randomId() {
+  return Math.random().toString(36).slice(2, 8).toUpperCase();
+}
+</script>
+</body>
+</html>
