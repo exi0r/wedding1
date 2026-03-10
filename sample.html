@@ -440,9 +440,9 @@
 <!-- ============================================================ -->
 <!--  BACKGROUND LAYERS (controlled by CONFIG.background)        -->
 <!-- ============================================================ -->
-<div class="atmospheric-haze" id="bg-haze"></div>
-<div id="color-temperature-overlay" class="color-temperature-overlay" style="opacity: 0.236865;"></div>
-<div class="sparkle-container" id="bg-sparkles"><div class="golden-sparkle" style="left: 5%; bottom: -5%; width: 3px; height: 3px; animation-duration: 8s; animation-delay: 0s; --sparkle-x: 15px;"></div><div class="golden-sparkle" style="left: 15%; bottom: -5%; width: 3px; height: 3px; animation-duration: 10s; animation-delay: 1s; --sparkle-x: -20px;"></div><div class="golden-sparkle" style="left: 25%; bottom: -5%; width: 3px; height: 3px; animation-duration: 9s; animation-delay: 2s; --sparkle-x: 25px;"></div><div class="golden-sparkle" style="left: 35%; bottom: -5%; width: 3px; height: 3px; animation-duration: 11s; animation-delay: 3s; --sparkle-x: -15px;"></div><div class="golden-sparkle" style="left: 45%; bottom: -5%; width: 3px; height: 3px; animation-duration: 8.5s; animation-delay: 4s; --sparkle-x: 18px;"></div><div class="golden-sparkle" style="left: 55%; bottom: -5%; width: 3px; height: 3px; animation-duration: 10.5s; animation-delay: 5s; --sparkle-x: -22px;"></div><div class="golden-sparkle" style="left: 65%; bottom: -5%; width: 3px; height: 3px; animation-duration: 9.5s; animation-delay: 6s; --sparkle-x: 20px;"></div><div class="golden-sparkle" style="left: 75%; bottom: -5%; width: 3px; height: 3px; animation-duration: 11.5s; animation-delay: 7s; --sparkle-x: -18px;"></div><div class="golden-sparkle" style="left: 85%; bottom: -5%; width: 3px; height: 3px; animation-duration: 8s; animation-delay: 0.5s; --sparkle-x: 16px;"></div><div class="golden-sparkle" style="left: 95%; bottom: -5%; width: 3px; height: 3px; animation-duration: 10s; animation-delay: 1.5s; --sparkle-x: -24px;"></div><div class="golden-sparkle" style="left: 10%; bottom: -5%; width: 3px; height: 3px; animation-duration: 9s; animation-delay: 2.5s; --sparkle-x: 22px;"></div><div class="golden-sparkle" style="left: 20%; bottom: -5%; width: 3px; height: 3px; animation-duration: 11s; animation-delay: 3.5s; --sparkle-x: -19px;"></div><div class="golden-sparkle" style="left: 30%; bottom: -5%; width: 3px; height: 3px; animation-duration: 8.5s; animation-delay: 4.5s; --sparkle-x: 17px;"></div><div class="golden-sparkle" style="left: 40%; bottom: -5%; width: 3px; height: 3px; animation-duration: 10.5s; animation-delay: 5.5s; --sparkle-x: -21px;"></div><div class="golden-sparkle" style="left: 50%; bottom: -5%; width: 3px; height: 3px; animation-duration: 9.5s; animation-delay: 6.5s; --sparkle-x: 23px;"></div></div>
+<div class="atmospheric-haze" id="bg-haze" style="display: none;"></div>
+<div id="color-temperature-overlay" class="color-temperature-overlay" style="opacity: 0.8; display: none;"></div>
+<div class="sparkle-container" id="bg-sparkles" style="display: none;"></div>
 <div id="golden-sun" class="golden-sun">
     <div class="sun-rays">
         <div class="sun-ray" style="transform:rotate(0deg)"></div><div class="sun-ray" style="transform:rotate(45deg)"></div>
@@ -451,10 +451,10 @@
         <div class="sun-ray" style="transform:rotate(270deg)"></div><div class="sun-ray" style="transform:rotate(315deg)"></div>
     </div>
 </div>
-<div class="bokeh-container" id="bg-bokeh"><div class="bokeh-circle" style="width: 165px; height: 165px; top: 20%; left: 10%; animation-delay: 0s; animation-duration: 12s; background: radial-gradient(circle, rgba(232, 184, 85, 0.48) 0%, transparent 70%); box-shadow: rgba(232, 184, 85, 0.48) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 215px; height: 215px; top: 60%; right: 15%; animation-delay: -3s; animation-duration: 18s; background: radial-gradient(circle, rgba(212, 121, 59, 0.42) 0%, transparent 70%); box-shadow: rgba(212, 121, 59, 0.42) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 135px; height: 135px; left: 20%; bottom: 25%; animation-delay: -6s; animation-duration: 14s; background: radial-gradient(circle, rgba(244, 232, 168, 0.52) 0%, transparent 70%); box-shadow: rgba(244, 232, 168, 0.52) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 195px; height: 195px; top: 40%; right: 25%; animation-delay: -9s; animation-duration: 16s; background: radial-gradient(circle, rgba(193, 120, 23, 0.38) 0%, transparent 70%); box-shadow: rgba(193, 120, 23, 0.38) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 155px; height: 155px; right: 10%; bottom: 15%; animation-delay: -12s; animation-duration: 13s; background: radial-gradient(circle, rgba(229, 213, 195, 0.48) 0%, transparent 70%); box-shadow: rgba(229, 213, 195, 0.48) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 175px; height: 175px; top: 10%; right: 30%; animation-delay: -15s; animation-duration: 17s; background: radial-gradient(circle, rgba(156, 168, 148, 0.42) 0%, transparent 70%); box-shadow: rgba(156, 168, 148, 0.42) 0px 0px 25px;"></div></div>
-<div class="dust-container" id="bg-dust"><div class="dust-particle" style="width: 8px; height: 8px; left: 10%; bottom: -5%; animation: 10s linear 0s infinite normal none running dustFloat; --drift-x: 30px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 25%; bottom: -5%; animation: 12s linear 1s infinite normal none running dustFloat; --drift-x: -25px;"></div><div class="dust-particle" style="width: 10px; height: 10px; left: 40%; bottom: -5%; animation: 14s linear 2s infinite normal none running dustFloat; --drift-x: 40px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 55%; bottom: -5%; animation: 11s linear 3s infinite normal none running dustFloat; --drift-x: -35px;"></div><div class="dust-particle" style="width: 8px; height: 8px; left: 70%; bottom: -5%; animation: 13s linear 4s infinite normal none running dustFloat; --drift-x: 28px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 85%; bottom: -5%; animation: 15s linear 5s infinite normal none running dustFloat; --drift-x: -30px;"></div><div class="dust-particle" style="width: 10px; height: 10px; left: 15%; bottom: -5%; animation: 12s linear 6s infinite normal none running dustFloat; --drift-x: 35px;"></div><div class="dust-particle" style="width: 8px; height: 8px; left: 30%; bottom: -5%; animation: 16s linear 7s infinite normal none running dustFloat; --drift-x: -28px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 45%; bottom: -5%; animation: 11s linear 0.5s infinite normal none running dustFloat; --drift-x: 32px;"></div><div class="dust-particle" style="width: 8px; height: 8px; left: 60%; bottom: -5%; animation: 13s linear 1.5s infinite normal none running dustFloat; --drift-x: -38px;"></div><div class="dust-particle" style="width: 10px; height: 10px; left: 75%; bottom: -5%; animation: 14s linear 2.5s infinite normal none running dustFloat; --drift-x: 26px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 90%; bottom: -5%; animation: 12s linear 3.5s infinite normal none running dustFloat; --drift-x: -32px;"></div><div class="dust-particle" style="width: 8px; height: 8px; left: 5%; bottom: -5%; animation: 15s linear 4.5s infinite normal none running dustFloat; --drift-x: 34px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 20%; bottom: -5%; animation: 11s linear 5.5s infinite normal none running dustFloat; --drift-x: -29px;"></div><div class="dust-particle" style="width: 10px; height: 10px; left: 35%; bottom: -5%; animation: 13s linear 6.5s infinite normal none running dustFloat; --drift-x: 36px;"></div><div class="dust-particle" style="width: 8px; height: 8px; left: 50%; bottom: -5%; animation: 16s linear 7.5s infinite normal none running dustFloat; --drift-x: -31px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 65%; bottom: -5%; animation: 12s linear 1.2s infinite normal none running dustFloat; --drift-x: 27px;"></div><div class="dust-particle" style="width: 8px; height: 8px; left: 80%; bottom: -5%; animation: 14s linear 2.2s infinite normal none running dustFloat; --drift-x: -33px;"></div><div class="dust-particle" style="width: 10px; height: 10px; left: 95%; bottom: -5%; animation: 11s linear 3.2s infinite normal none running dustFloat; --drift-x: 29px;"></div><div class="dust-particle" style="width: 7px; height: 7px; left: 12%; bottom: -5%; animation: 15s linear 4.2s infinite normal none running dustFloat; --drift-x: -37px;"></div></div>
+<div class="bokeh-container" id="bg-bokeh"><div class="bokeh-circle" style="width: 123.75px; height: 123.75px; top: 20%; left: 10%; animation-delay: 0s; animation-duration: 16s; background: radial-gradient(circle, rgba(232, 184, 85, 0.48) 0%, transparent 70%); box-shadow: rgba(232, 184, 85, 0.48) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 161.25px; height: 161.25px; top: 60%; right: 15%; animation-delay: -3s; animation-duration: 24s; background: radial-gradient(circle, rgba(212, 121, 59, 0.42) 0%, transparent 70%); box-shadow: rgba(212, 121, 59, 0.42) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 101.25px; height: 101.25px; left: 20%; bottom: 25%; animation-delay: -6s; animation-duration: 18.7s; background: radial-gradient(circle, rgba(244, 232, 168, 0.52) 0%, transparent 70%); box-shadow: rgba(244, 232, 168, 0.52) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 146.25px; height: 146.25px; top: 40%; right: 25%; animation-delay: -9s; animation-duration: 21.3s; background: radial-gradient(circle, rgba(193, 120, 23, 0.38) 0%, transparent 70%); box-shadow: rgba(193, 120, 23, 0.38) 0px 0px 25px;"></div><div class="bokeh-circle" style="width: 116.25px; height: 116.25px; right: 10%; bottom: 15%; animation-delay: -12s; animation-duration: 17.3s; background: radial-gradient(circle, rgba(229, 213, 195, 0.48) 0%, transparent 70%); box-shadow: rgba(229, 213, 195, 0.48) 0px 0px 25px;"></div></div>
+<div class="dust-container" id="bg-dust"><div class="dust-particle" style="width: 6px; height: 6px; left: 10%; bottom: -5%; animation: 13.3s linear 0s infinite normal none running dustFloat; --drift-x: 30px;"></div><div class="dust-particle" style="width: 5.25px; height: 5.25px; left: 25%; bottom: -5%; animation: 16s linear 1s infinite normal none running dustFloat; --drift-x: -25px;"></div><div class="dust-particle" style="width: 7.5px; height: 7.5px; left: 40%; bottom: -5%; animation: 18.7s linear 2s infinite normal none running dustFloat; --drift-x: 40px;"></div><div class="dust-particle" style="width: 5.25px; height: 5.25px; left: 55%; bottom: -5%; animation: 14.7s linear 3s infinite normal none running dustFloat; --drift-x: -35px;"></div><div class="dust-particle" style="width: 6px; height: 6px; left: 70%; bottom: -5%; animation: 17.3s linear 4s infinite normal none running dustFloat; --drift-x: 28px;"></div><div class="dust-particle" style="width: 5.25px; height: 5.25px; left: 85%; bottom: -5%; animation: 20s linear 5s infinite normal none running dustFloat; --drift-x: -30px;"></div><div class="dust-particle" style="width: 7.5px; height: 7.5px; left: 15%; bottom: -5%; animation: 16s linear 6s infinite normal none running dustFloat; --drift-x: 35px;"></div><div class="dust-particle" style="width: 6px; height: 6px; left: 30%; bottom: -5%; animation: 21.3s linear 7s infinite normal none running dustFloat; --drift-x: -28px;"></div><div class="dust-particle" style="width: 5.25px; height: 5.25px; left: 45%; bottom: -5%; animation: 14.7s linear 0.5s infinite normal none running dustFloat; --drift-x: 32px;"></div><div class="dust-particle" style="width: 6px; height: 6px; left: 60%; bottom: -5%; animation: 17.3s linear 1.5s infinite normal none running dustFloat; --drift-x: -38px;"></div><div class="dust-particle" style="width: 7.5px; height: 7.5px; left: 75%; bottom: -5%; animation: 18.7s linear 2.5s infinite normal none running dustFloat; --drift-x: 26px;"></div><div class="dust-particle" style="width: 5.25px; height: 5.25px; left: 90%; bottom: -5%; animation: 16s linear 3.5s infinite normal none running dustFloat; --drift-x: -32px;"></div><div class="dust-particle" style="width: 6px; height: 6px; left: 5%; bottom: -5%; animation: 20s linear 4.5s infinite normal none running dustFloat; --drift-x: 34px;"></div><div class="dust-particle" style="width: 5.25px; height: 5.25px; left: 20%; bottom: -5%; animation: 14.7s linear 5.5s infinite normal none running dustFloat; --drift-x: -29px;"></div><div class="dust-particle" style="width: 7.5px; height: 7.5px; left: 35%; bottom: -5%; animation: 17.3s linear 6.5s infinite normal none running dustFloat; --drift-x: 36px;"></div></div>
 <!-- New background effect layers -->
-<div class="bg-fx-layer" id="bg-petals" style="display: none;"></div>
+<div class="bg-fx-layer" id="bg-petals" style=""><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet3.png" style="width: 18.7px; height: auto; left: 86.6%; top: -5vh; --x1: 33.9px; --x2: -47.6px; --x3: -1.0px; --x4: -32.1px; --r1: 65deg; --r2: 130deg; --r3: 194deg; --r4: 259deg; animation: 28.6s ease-in-out 12.4s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet2.png" style="width: 22.7px; height: auto; left: 46.4%; top: -5vh; --x1: -38.8px; --x2: 20.3px; --x3: -29.2px; --x4: -12.9px; --r1: -93deg; --r2: -185deg; --r3: -278deg; --r4: -371deg; animation: 23.2s ease-in-out 7.8s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 25.5px; height: auto; left: 43.3%; top: -5vh; --x1: 69.5px; --x2: -30.8px; --x3: 57.3px; --x4: 31.1px; --r1: -56deg; --r2: -113deg; --r3: -169deg; --r4: -226deg; animation: 22.6s ease-in-out 10.1s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet2.png" style="width: 23.1px; height: auto; left: 38.3%; top: -5vh; --x1: 70.5px; --x2: -79.0px; --x3: 15.5px; --x4: -38.1px; --r1: -55deg; --r2: -111deg; --r3: -166deg; --r4: -222deg; animation: 17.6s ease-in-out 18.9s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 18.2px; height: auto; left: 64.6%; top: -5vh; --x1: -44.5px; --x2: 21.5px; --x3: -35.1px; --x4: -17.3px; --r1: -80deg; --r2: -160deg; --r3: -239deg; --r4: -319deg; animation: 27.1s ease-in-out 0.8s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet3.png" style="width: 28.5px; height: auto; left: 78.8%; top: -5vh; --x1: 51.1px; --x2: -48.5px; --x3: 19.1px; --x4: -14.7px; --r1: 63deg; --r2: 126deg; --r3: 189deg; --r4: 252deg; animation: 21.2s ease-in-out 12s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet3.png" style="width: 20.8px; height: auto; left: 43.2%; top: -5vh; --x1: 58.5px; --x2: -44.8px; --x3: 31.4px; --x4: -1.3px; --r1: -72deg; --r2: -144deg; --r3: -216deg; --r4: -288deg; animation: 25.9s ease-in-out 16s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 24.1px; height: auto; left: 97%; top: -5vh; --x1: -40.7px; --x2: 23.3px; --x3: -28.9px; --x4: -10.6px; --r1: 49deg; --r2: 97deg; --r3: 146deg; --r4: 195deg; animation: 24.4s ease-in-out 4.5s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 30.6px; height: auto; left: 21.5%; top: -5vh; --x1: 38.9px; --x2: -44.0px; --x3: 8.2px; --x4: -21.5px; --r1: 86deg; --r2: 171deg; --r3: 257deg; --r4: 342deg; animation: 16.1s ease-in-out 4.2s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 18.4px; height: auto; left: 43.5%; top: -5vh; --x1: 26.7px; --x2: -26.4px; --x3: 9.0px; --x4: -9.3px; --r1: -88deg; --r2: -175deg; --r3: -263deg; --r4: -351deg; animation: 27.7s ease-in-out 2.7s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet3.png" style="width: 30.2px; height: auto; left: 34.9%; top: -5vh; --x1: -64.0px; --x2: 65.8px; --x3: -19.4px; --x4: 25.8px; --r1: -80deg; --r2: -160deg; --r3: -241deg; --r4: -321deg; animation: 16.4s ease-in-out 2.5s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 27.5px; height: auto; left: 42.3%; top: -5vh; --x1: 67.8px; --x2: -26.3px; --x3: 59.2px; --x4: 35.7px; --r1: -59deg; --r2: -118deg; --r3: -177deg; --r4: -235deg; animation: 26.3s ease-in-out 4.3s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet3.png" style="width: 25px; height: auto; left: 15.5%; top: -5vh; --x1: 71.7px; --x2: -28.2px; --x3: 62.3px; --x4: 37.3px; --r1: -69deg; --r2: -138deg; --r3: -206deg; --r4: -275deg; animation: 21.2s ease-in-out 7.9s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet2.png" style="width: 31.3px; height: auto; left: 28.9%; top: -5vh; --x1: -46.6px; --x2: 41.3px; --x3: -19.9px; --x4: 9.3px; --r1: 71deg; --r2: 142deg; --r3: 213deg; --r4: 284deg; animation: 26s ease-in-out 4.5s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 29.8px; height: auto; left: 63.9%; top: -5vh; --x1: -41.8px; --x2: 37.3px; --x3: -17.8px; --x4: 8.6px; --r1: -50deg; --r2: -101deg; --r3: -151deg; --r4: -202deg; animation: 19.7s ease-in-out 7.7s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet2.png" style="width: 31.7px; height: auto; left: 73.1%; top: -5vh; --x1: -39.1px; --x2: 17.5px; --x3: -32.0px; --x4: -17.1px; --r1: 61deg; --r2: 123deg; --r3: 184deg; --r4: 245deg; animation: 17.5s ease-in-out 7.6s infinite normal none running petalDrift;"><img class="petal-particle" src="https://exi0r.github.io/wedding/image/yellowpet1.png" style="width: 21.4px; height: auto; left: 42%; top: -5vh; --x1: 45.8px; --x2: -59.2px; --x3: 3.1px; --x4: -36.1px; --r1: -79deg; --r2: -158deg; --r3: -237deg; --r4: -316deg; animation: 21.1s ease-in-out 11.5s infinite normal none running petalDrift;"></div>
 <div class="bg-fx-layer" id="bg-goldrain" style="display: none;"></div>
 <div class="bg-fx-layer" id="bg-fireflies" style="display: none;"></div>
 <div class="bg-fx-layer" id="bg-glitter" style="display: none;"></div>
@@ -499,13 +499,13 @@
 <!--  HEADER / NAVIGATION                                         -->
 <!-- ============================================================ -->
 <header id="home" class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md shadow-lg transition-all duration-500 border-b border-amber-600/10" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 40px;">
-    <div id="scroll-progress" class="absolute bottom-0 left-0" style="width: 18.9492%;"></div>
+    <div id="scroll-progress" class="absolute bottom-0 left-0" style="width: 87.8516%;"></div>
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#home" class="text-2xl font-heading text-amber-700 shimmer-text transition-all duration-300 hover:scale-110" id="nav-brand">T &amp; T</a>
         <nav class="hidden md:flex space-x-8">
-            <a href="#story" class="nav-link relative group transition-all duration-300 hover:text-amber-700 text-amber-700">Our Story<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
+            <a href="#story" class="nav-link relative group transition-all duration-300 hover:text-amber-700">Our Story<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#event" class="nav-link relative group transition-all duration-300 hover:text-amber-700">Event Details<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
-            <a href="#travel" class="nav-link relative group transition-all duration-300 hover:text-amber-700">Travel<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
+            <a href="#travel" class="nav-link relative group transition-all duration-300 hover:text-amber-700 text-amber-700">Travel<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#gallery" class="nav-link relative group transition-all duration-300 hover:text-amber-700">Gallery<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#giftnotes" class="nav-link relative group transition-all duration-300 hover:text-amber-700">Gift Notes<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#hashtag" class="nav-link relative group transition-all duration-300 hover:text-amber-700">Hashtag<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span></a>
@@ -517,9 +517,9 @@
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-amber-600/10">
         <div class="px-6 py-4 space-y-1">
-            <a href="#story" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2 text-amber-700">Our Story</a>
+            <a href="#story" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2">Our Story</a>
             <a href="#event" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2">Event Details</a>
-            <a href="#travel" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2">Travel</a>
+            <a href="#travel" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2 text-amber-700">Travel</a>
             <a href="#gallery" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2">Gallery</a>
             <a href="#giftnotes" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2">Gift Notes</a>
             <a href="#hashtag" class="block py-3 nav-link text-center rounded-lg hover:bg-amber-600/10 transition-all duration-300 transform hover:translate-x-2">Hashtag</a>
@@ -554,7 +554,7 @@
     <div class="shimmer-overlay"></div>
 
     <!-- Floating Dots (shown/hidden by CONFIG) -->
-    <div class="absolute inset-0 opacity-30 parallax-layer" id="hero-dots" data-parallax-speed="0.3" style="transform: translateY(-149.52px);">
+    <div class="absolute inset-0 opacity-30 parallax-layer" id="hero-dots" data-parallax-speed="0.3" style="transform: translateY(-146.64px);">
         <div class="absolute top-10 left-10 w-4 h-4 bg-amber-200 rounded-full float-gentle"></div>
         <div class="absolute top-20 right-20 w-6 h-6 bg-orange-200/70 rounded-full float-gentle" style="animation-delay:-1s;"></div>
         <div class="absolute bottom-32 left-20 w-3 h-3 bg-amber-100/50 rounded-full float-gentle" style="animation-delay:-2s;"></div>
@@ -562,7 +562,7 @@
     </div>
 
     <!-- Hero Content -->
-    <div class="relative z-10 p-6 parallax-layer aos-init aos-animate" data-parallax-speed="0.5" data-aos="fade-up" data-aos-duration="1000" style="transform: translateY(-228.8px);">
+    <div class="relative z-10 p-6 parallax-layer aos-init aos-animate" data-parallax-speed="0.5" data-aos="fade-up" data-aos-duration="1000" style="transform: translateY(-244px);">
         <div class="hero-content">
             <h1 class="font-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-4 hero-names leading-tight" id="hero-names" data-names="The Groom &amp; The Bride" style="line-height:0.9;padding:0.2em 0;">The Groom &amp; The Bride</h1>
 
@@ -588,7 +588,7 @@
 </section>
 
 <!-- Flower Divider -->
-<div class="flower-divider" id="divider-1"><div class="flower-divider-line"></div><div class="flower-bloom blooming"><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-center"></div></div></div>
+<div class="flower-divider" id="divider-1"><div class="flower-divider-line"></div><div class="flower-bloom"><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-center"></div></div></div>
 
 <!-- ============================================================ -->
 <!--  SECTION 2: COUNTDOWN TIMER                                  -->
@@ -630,12 +630,12 @@
                 <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">🕐</div>
             </div>
             <div class="countdown-card group p-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="700">
-                <div class="flipper" id="minutes-flipper"><div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">28</div></div>
+                <div class="flipper" id="minutes-flipper"><div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">5</div></div>
                 <div class="text-sm uppercase tracking-widest mt-2 transition-colors duration-300 group-hover:text-amber-700">Minutes</div>
                 <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">⏰</div>
             </div>
             <div class="countdown-card group p-6 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="800">
-                <div class="flipper flipped" id="seconds-flipper"><div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">37</div></div>
+                <div class="flipper" id="seconds-flipper"><div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">55</div></div>
                 <div class="text-sm uppercase tracking-widest mt-2 transition-colors duration-300 group-hover:text-amber-700">Seconds</div>
                 <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">⚡</div>
             </div>
@@ -644,7 +644,7 @@
 </section>
 
 <!-- Flower Divider -->
-<div class="flower-divider" id="divider-2"><div class="flower-divider-line"></div><div class="flower-bloom blooming"><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-center"></div></div></div>
+<div class="flower-divider" id="divider-2"><div class="flower-divider-line"></div><div class="flower-bloom"><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-petal"></div><div class="flower-center"></div></div></div>
 
 <!-- ============================================================ -->
 <!--  SECTION 3: OUR STORY                                        -->
@@ -863,13 +863,13 @@
 <!-- ════════════════════════════════════════════════════ -->
 <section id="event" class="py-20 bg-amber-50 relative paper-texture top-accent-border">
     <div class="container mx-auto px-3 sm:px-6 text-center content-wrapper">
-        <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 elegant-heading aos-init" id="event-title" data-aos="fade-up">The Wedding</h2>
-        <div class="citrus-garland mt-3 sm:mt-4 mb-4 sm:mb-6 aos-init" data-aos="fade-up" data-aos-delay="100">
+        <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 elegant-heading aos-init aos-animate" id="event-title" data-aos="fade-up">The Wedding</h2>
+        <div class="citrus-garland mt-3 sm:mt-4 mb-4 sm:mb-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div>
         </div>
-        <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12 aos-init" id="event-subtitle" data-aos="fade-up" data-aos-delay="200">JOIN US TO CELEBRATE</p>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12 aos-init aos-animate" id="event-subtitle" data-aos="fade-up" data-aos-delay="200">JOIN US TO CELEBRATE</p>
         <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-12 max-w-6xl mx-auto items-center">
-            <div class="text-center aos-init" data-aos="fade-right">
+            <div class="text-center aos-init aos-animate" data-aos="fade-right">
                 <div class="mb-2 sm:mb-4">
                     <img src="https://img.icons8.com/ios/100/81A26B/wedding-rings.png" alt="Ceremony Icon" class="mx-auto w-12 sm:w-16 md:w-20 lg:w-24 h-auto">
                 </div>
@@ -881,7 +881,7 @@
                     <a id="event-maps-link" href="https://maps.app.goo.gl/v1xjURzm47ShGyDP6" target="_blank" class="btn-primary text-xs sm:text-sm md:text-base px-3 py-2 sm:px-6 sm:py-3">Open in Google Maps</a>
                 </div>
             </div>
-            <div class="h-48 sm:h-64 md:h-80 lg:h-full min-h-[200px] sm:min-h-[300px] rounded-lg shadow-xl overflow-hidden aos-init" data-aos="fade-left">
+            <div class="h-48 sm:h-64 md:h-80 lg:h-full min-h-[200px] sm:min-h-[300px] rounded-lg shadow-xl overflow-hidden aos-init aos-animate" data-aos="fade-left">
                 <iframe id="event-map-embed" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d61783.25814589349!2d121.166947!3d14.573208!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c7fb8fce5735%3A0xc84901512d88bd1e!2sThe%20Emerald%20Events%20Place!5e0!3m2!1sen!2sjp!4v1752373039070!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
@@ -899,20 +899,20 @@
     <div class="gradient-overlay-bottom"></div>
     <div class="container mx-auto px-6 content-wrapper">
         <div class="text-center mb-12">
-            <h2 class="font-serif-display text-5xl font-bold text-gray-800 aos-init" id="attire-title" data-aos="fade-up">Attire</h2>
-            <div class="botanical-divider mt-4 mb-6 aos-init" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="font-serif-display text-5xl font-bold text-gray-800 aos-init aos-animate" id="attire-title" data-aos="fade-up">Attire</h2>
+            <div class="botanical-divider mt-4 mb-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                 <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
                     <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20" stroke="var(--cp)" stroke-width="2" fill="none" stroke-linecap="round"></path>
                     <circle cx="60" cy="20" r="4" fill="#E8B84B" opacity="0.9"></circle><circle cx="100" cy="20" r="4" fill="var(--cs)" opacity="0.9"></circle><circle cx="140" cy="20" r="4" fill="#B85C38" opacity="0.9"></circle>
                     <path d="M 60,20 Q 55,15 58,12" stroke="#A0671C" stroke-width="1.5" fill="none"></path><path d="M 100,20 Q 105,15 102,12" stroke="#A0671C" stroke-width="1.5" fill="none"></path><path d="M 140,20 Q 135,25 138,28" stroke="#A0671C" stroke-width="1.5" fill="none"></path>
                 </svg>
             </div>
-            <p class="text-xl uppercase tracking-wide text-gray-500 aos-init" id="attire-theme" data-aos="fade-up" data-aos-delay="200">Golden Hour Theme</p>
+            <p class="text-xl uppercase tracking-wide text-gray-500 aos-init aos-animate" id="attire-theme" data-aos="fade-up" data-aos-delay="200">Golden Hour Theme</p>
         </div>
-        <div class="max-w-5xl mx-auto aos-init" data-aos="fade-up" data-aos-delay="300">
+        <div class="max-w-5xl mx-auto aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
             <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-amber-100/50 ornate-border">
                 <img id="attire-image" src="https://exi0r.github.io/wedding/image/1attire.jpg" alt="Attire Guide" class="w-full h-auto object-contain">
-                <div class="bg-gradient-to-r from-amber-50/95 to-orange-50/80 backdrop-blur-md p-6 sm:p-8 aos-init" data-aos="fade-up" data-aos-delay="400">
+                <div class="bg-gradient-to-r from-amber-50/95 to-orange-50/80 backdrop-blur-md p-6 sm:p-8 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
                     <p class="text-sm sm:text-base font-semibold text-gray-700 mb-4 text-center font-serif-display text-xl">Color Palette</p>
                     <div class="flex justify-center gap-3 sm:gap-4 flex-wrap" id="attire-palette">
         <div class="group cursor-pointer text-center" title="Golden Yellow">
@@ -941,7 +941,7 @@
         </div></div>
                 </div>
             </div>
-            <div class="mt-8 text-center aos-init" data-aos="fade-up" data-aos-delay="500">
+            <div class="mt-8 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
                 <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed" id="attire-note">We kindly request our guests to dress in <strong>formal attire</strong> following our golden hour theme.</p>
             </div>
         </div>
@@ -956,14 +956,14 @@
 <!-- ════════════════════════════════════════════════════ -->
 <section id="entourage" class="py-16 md:py-20 bg-amber-50">
     <div class="container mx-auto px-3 sm:px-6 content-wrapper text-center">
-        <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 aos-init" id="entourage-title" data-aos="fade-up">Our Entourage</h2>
-        <div class="citrus-garland mt-3 sm:mt-4 mb-4 sm:mb-6 aos-init" data-aos="fade-up" data-aos-delay="100">
+        <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 aos-init aos-animate" id="entourage-title" data-aos="fade-up">Our Entourage</h2>
+        <div class="citrus-garland mt-3 sm:mt-4 mb-4 sm:mb-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div>
         </div>
-        <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12 aos-init" id="entourage-subtitle" data-aos="fade-up" data-aos-delay="200">THE PEOPLE WHO STAND WITH US</p>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12 aos-init aos-animate" id="entourage-subtitle" data-aos="fade-up" data-aos-delay="200">THE PEOPLE WHO STAND WITH US</p>
         <!-- Couple card -->
         <div class="max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
-            <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 group aos-init" data-aos="zoom-in" data-aos-duration="800">
+            <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 group aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800">
                 <div class="relative mb-4 sm:mb-6 md:mb-8">
                     <img id="entourage-couple-photo" src="https://exi0r.github.io/wedding/image/1groombride.jpg" alt="Groom and Bride" class="rounded-lg sm:rounded-xl w-full max-w-md mx-auto object-cover shadow-lg image-hover-effect">
                 </div>
@@ -975,75 +975,75 @@
         </div>
         <!-- Dynamically populated entourage groups -->
         <div id="entourage-groups"><div class="mb-8 sm:mb-12 md:mb-16">
-        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init" data-aos="fade-up">Parents</h3>
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init aos-animate" data-aos="fade-up">Parents</h3>
         <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
-            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init" data-aos="fade-right">
+            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init aos-animate" data-aos="fade-right">
                 <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 leading-tight">Parents of the Groom</h4><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Alejandro Reyes</p><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Maricel Reyes</p></div>
-            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init" data-aos="fade-left">
+            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init aos-animate" data-aos="fade-left">
                 <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 leading-tight">Parents of the Bride</h4><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Roberto Santos (deceased)</p><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Corazon Santos</p></div>
         </div></div><div class="mb-8 sm:mb-12 md:mb-16">
-        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init" data-aos="fade-up">Best Man &amp; Maids of Honor</h3>
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init aos-animate" data-aos="fade-up">Best Man &amp; Maids of Honor</h3>
         <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
-            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init" data-aos="zoom-in" data-aos-duration="800">
+            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800">
                 <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 leading-tight">Best Man</h4><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Miguel Torres</p></div>
-            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
                 <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 leading-tight">Maids of Honor</h4><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Sofia Cruz</p><p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Isabella Lim</p></div>
         </div></div><div class="mb-8 sm:mb-12 md:mb-16">
-        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init" data-aos="fade-up">Principal Sponsors</h3>
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init aos-animate" data-aos="fade-up">Principal Sponsors</h3>
         <div class="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-3xl mx-auto">
             
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="50">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mr. Antonio Villanueva</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mrs. Carmen Villanueva</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="150">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mr. Eduardo Mercado</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mrs. Luz Mercado</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="250">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="250">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mr. Ricardo Flores</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mrs. Amelia Flores</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="350">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="350">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mr. Benjamin Cruz</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mrs. Dolores Cruz</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="450">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="450">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mr. Fernando Navarro</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mrs. Rosario Navarro</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="550">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="550">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mrs. Consuelo Ramos</h3>
             </div>
-            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init" data-aos="fade-up" data-aos-delay="600">
+            <div class="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="600">
                 <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-amber-700 leading-tight">Mr. Vicente Ramos</h3>
             </div>
         </div></div><div class="mb-8 sm:mb-12 md:mb-16">
-        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init" data-aos="fade-up">Groomsmen &amp; Bridesmaids</h3>
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init aos-animate" data-aos="fade-up">Groomsmen &amp; Bridesmaids</h3>
         <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
-            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-md aos-init" data-aos="fade-right">
+            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-md aos-init aos-animate" data-aos="fade-right">
                 <h4 class="text-sm sm:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 text-center leading-tight">Groomsmen</h4>
                 <ul class="space-y-1 sm:space-y-2 text-center"><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Marco Dela Cruz</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Paolo Fernandez</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Luis Castillo</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Carlo Mendoza</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Rafael Santos</li></ul>
             </div>
-            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-md aos-init" data-aos="fade-left">
+            <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl shadow-md aos-init aos-animate" data-aos="fade-left">
                 <h4 class="text-sm sm:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 text-center leading-tight">Bridesmaids</h4>
                 <ul class="space-y-1 sm:space-y-2 text-center"><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Camille Torres</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Jasmine Aquino</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Nicole Bautista</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Francesca Reyes</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Amanda Gomez</li><li class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Beatrice Lim</li></ul>
             </div>
         </div></div><div class="mb-8 sm:mb-12 md:mb-16">
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init" data-aos="fade-up">Special Role</h3>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-amber-700 mb-4 sm:mb-6 md:mb-8 aos-init aos-animate" data-aos="fade-up">Special Role</h3>
             <div class="flex flex-wrap justify-center gap-4">
                 
-                <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md text-center aos-init" data-aos="zoom-in" data-aos-duration="800">
+                <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md text-center aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800">
                     <p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Gabriel Santos</p>
                     <p class="text-xs sm:text-sm md:text-base text-gray-500 mt-1">Banner Bearer</p>
                 </div>
@@ -1062,18 +1062,18 @@
     <div class="gradient-overlay-bottom"></div>
     <div class="container mx-auto px-6 text-center content-wrapper relative z-10">
         <div class="text-center mb-12">
-            <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text aos-init" id="gallery-title" data-aos="fade-up" data-aos-duration="1000">Gallery</h2>
-            <div class="botanical-divider mt-4 mb-6 aos-init" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text aos-init aos-animate" id="gallery-title" data-aos="fade-up" data-aos-duration="1000">Gallery</h2>
+            <div class="botanical-divider mt-4 mb-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                 <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
                     <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20" stroke="var(--cs)" stroke-width="2" fill="none" stroke-linecap="round"></path>
                     <circle cx="60" cy="20" r="4" fill="#F4E8A8" opacity="0.8"></circle><circle cx="100" cy="20" r="4" fill="var(--cs)" opacity="0.8"></circle><circle cx="140" cy="20" r="4" fill="#8E4232" opacity="0.8"></circle>
                     <path d="M 60,20 Q 55,15 58,12" stroke="var(--cp)" stroke-width="1.5" fill="none"></path><path d="M 100,20 Q 105,15 102,12" stroke="var(--cp)" stroke-width="1.5" fill="none"></path><path d="M 140,20 Q 135,25 138,28" stroke="var(--cp)" stroke-width="1.5" fill="none"></path>
                 </svg>
             </div>
-            <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 aos-init" id="gallery-subtitle" data-aos="fade-up" data-aos-delay="200">CHERISHED MOMENTS</p>
+            <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 aos-init aos-animate" id="gallery-subtitle" data-aos="fade-up" data-aos-delay="200">CHERISHED MOMENTS</p>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" id="gallery-grid">
-        <a href="https://exi0r.github.io/wedding/image/1gallery1.PNG" class="glightbox gallery-item group ken-burns-container aos-init" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100">
+        <a href="https://exi0r.github.io/wedding/image/1gallery1.PNG" class="glightbox gallery-item group ken-burns-container aos-init aos-animate" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100">
             <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                 <img src="https://exi0r.github.io/wedding/image/1gallery1.PNG" alt="Gallery 1" class="w-full h-full object-cover ken-burns-effect">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -1085,7 +1085,7 @@
                 </div>
             </div>
         </a>
-        <a href="https://exi0r.github.io/wedding/image/1gallery2.jpg" class="glightbox gallery-item group ken-burns-container aos-init" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="200">
+        <a href="https://exi0r.github.io/wedding/image/1gallery2.jpg" class="glightbox gallery-item group ken-burns-container aos-init aos-animate" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="200">
             <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                 <img src="https://exi0r.github.io/wedding/image/1gallery2.jpg" alt="Gallery 2" class="w-full h-full object-cover ken-burns-effect">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -1097,7 +1097,7 @@
                 </div>
             </div>
         </a>
-        <a href="https://exi0r.github.io/wedding/image/1gallery3.jpg" class="glightbox gallery-item group ken-burns-container aos-init" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="300">
+        <a href="https://exi0r.github.io/wedding/image/1gallery3.jpg" class="glightbox gallery-item group ken-burns-container aos-init aos-animate" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="300">
             <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                 <img src="https://exi0r.github.io/wedding/image/1gallery3.jpg" alt="Gallery 3" class="w-full h-full object-cover ken-burns-effect">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -1109,7 +1109,7 @@
                 </div>
             </div>
         </a>
-        <a href="https://exi0r.github.io/wedding/image/1gallery4.PNG" class="glightbox gallery-item group ken-burns-container aos-init" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400">
+        <a href="https://exi0r.github.io/wedding/image/1gallery4.PNG" class="glightbox gallery-item group ken-burns-container aos-init aos-animate" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400">
             <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                 <img src="https://exi0r.github.io/wedding/image/1gallery4.PNG" alt="Gallery 4" class="w-full h-full object-cover ken-burns-effect">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -1121,7 +1121,7 @@
                 </div>
             </div>
         </a>
-        <a href="https://exi0r.github.io/wedding/image/1gallery5.jpg" class="glightbox gallery-item group ken-burns-container aos-init" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="500">
+        <a href="https://exi0r.github.io/wedding/image/1gallery5.jpg" class="glightbox gallery-item group ken-burns-container aos-init aos-animate" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="500">
             <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                 <img src="https://exi0r.github.io/wedding/image/1gallery5.jpg" alt="Gallery 5" class="w-full h-full object-cover ken-burns-effect">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -1133,7 +1133,7 @@
                 </div>
             </div>
         </a>
-        <a href="https://exi0r.github.io/wedding/image/1gallery6.jpg" class="glightbox gallery-item group ken-burns-container aos-init" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="600">
+        <a href="https://exi0r.github.io/wedding/image/1gallery6.jpg" class="glightbox gallery-item group ken-burns-container aos-init aos-animate" data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="600">
             <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                 <img src="https://exi0r.github.io/wedding/image/1gallery6.jpg" alt="Gallery 6" class="w-full h-full object-cover ken-burns-effect">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -1160,11 +1160,11 @@
             <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 items-stretch">
                 <!-- Gift Note -->
                 <div class="flex flex-col gap-3 sm:gap-4 md:gap-6 h-full">
-                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center text-white shadow-2xl h-24 sm:h-32 md:h-40 lg:h-48 aos-init" style="background:linear-gradient(135deg,var(--cp) 0%,#6B8E5A 100%);" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center text-white shadow-2xl h-24 sm:h-32 md:h-40 lg:h-48 aos-init aos-animate" style="background:linear-gradient(135deg,var(--cp) 0%,#6B8E5A 100%);" data-aos="fade-right" data-aos-duration="1000">
                         <div class="mb-1 sm:mb-2"><svg class="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"></path></svg></div>
                         <h3 class="font-serif-display text-xs sm:text-base md:text-xl lg:text-2xl font-bold leading-tight">GIFT NOTE</h3>
                     </div>
-                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col justify-center shadow-2xl flex-1 aos-init" style="background:linear-gradient(135deg,var(--c-bg-alt) 0%,var(--cs) 100%);" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col justify-center shadow-2xl flex-1 aos-init aos-animate" style="background:linear-gradient(135deg,var(--c-bg-alt) 0%,var(--cs) 100%);" data-aos="fade-left" data-aos-duration="1000">
                         <p class="text-gray-700 text-[9px] sm:text-sm md:text-base lg:text-lg leading-relaxed mb-3 sm:mb-4 md:mb-6 text-center" id="gift-message">Your prayers, love, laughter, and presence are all we could ever ask for. However, if you wish to honor us with a gift, a monetary gift would be deeply appreciated as we start our life together.</p>
                         <div class="grid grid-cols-2 gap-2 sm:gap-4">
                             <div class="flex flex-col items-center">
@@ -1188,11 +1188,11 @@
                 </div>
                 <!-- Hashtag -->
                 <div id="hashtag" class="flex flex-col gap-3 sm:gap-4 md:gap-6 h-full">
-                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center text-white shadow-2xl h-24 sm:h-32 md:h-40 lg:h-48 aos-init" style="background:linear-gradient(135deg,var(--cp) 0%,#6B8E5A 100%);" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center text-white shadow-2xl h-24 sm:h-32 md:h-40 lg:h-48 aos-init aos-animate" style="background:linear-gradient(135deg,var(--cp) 0%,#6B8E5A 100%);" data-aos="fade-right" data-aos-duration="1000">
                         <div class="mb-1 sm:mb-2"><span class="text-2xl sm:text-4xl lg:text-5xl font-bold">#</span></div>
                         <h3 class="font-serif-display text-xs sm:text-base md:text-xl lg:text-2xl font-bold text-center leading-tight">OUR<br class="hidden sm:inline">HASHTAG</h3>
                     </div>
-                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col justify-center shadow-2xl flex-1 aos-init" style="background:linear-gradient(135deg,var(--c-bg-alt) 0%,var(--cs) 100%);" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col justify-center shadow-2xl flex-1 aos-init aos-animate" style="background:linear-gradient(135deg,var(--c-bg-alt) 0%,var(--cs) 100%);" data-aos="fade-left" data-aos-duration="1000">
                         <p class="text-gray-700 text-[9px] sm:text-sm md:text-base lg:text-lg leading-relaxed mb-3 sm:mb-4 md:mb-6 text-center" id="hashtag-message">Help us capture the love and memories! Tag your photos to be part of our best day ever!</p>
                         <div class="bg-white rounded-xl p-3 sm:p-8 lg:p-10 shadow-lg text-center overflow-hidden">
                             <p class="text-sm sm:text-2xl lg:text-3xl font-bold text-amber-700 leading-tight break-all sm:break-normal" style="font-family:'Playfair Display',serif;" id="hashtag-display">#YourHashtagHere</p>
@@ -1212,11 +1212,11 @@
 <!-- ════════════════════════════════════════════════════ -->
 <section id="rsvp" class="py-12 sm:py-16 md:py-20 relative fabric-texture top-accent-border" style="background:linear-gradient(135deg,var(--c-rsvp-from) 0%,var(--c-rsvp-to) 100%);">
     <div class="relative container mx-auto px-6 text-center content-wrapper">
-        <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl font-bold text-amber-700 aos-init" id="rsvp-title" data-aos="fade-up">Will You Be There?</h2>
-        <div class="citrus-garland mt-3 mb-4 aos-init" data-aos="fade-up" data-aos-delay="100">
+        <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl font-bold text-amber-700 aos-init aos-animate" id="rsvp-title" data-aos="fade-up">Will You Be There?</h2>
+        <div class="citrus-garland mt-3 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div><div class="citrus-dot"></div>
         </div>
-        <div class="rsvp-reply-card max-w-sm mx-auto aos-init" id="rsvp-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="rsvp-reply-card max-w-sm mx-auto aos-init aos-animate" id="rsvp-card" data-aos="fade-up" data-aos-delay="200">
             <!-- Corner flourishes -->
             <svg class="rsvp-corner tl" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 2 Q22 2 2 22" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"></path><path d="M32 2 Q20 9 12 22" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.55"></path><circle cx="42" cy="2" r="2" fill="currentColor" opacity="0.7"></circle><circle cx="2" cy="22" r="1.5" fill="currentColor" opacity="0.5"></circle></svg>
             <svg class="rsvp-corner tr" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M42 2 Q22 2 2 22" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"></path><path d="M32 2 Q20 9 12 22" stroke="currentColor" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.55"></path><circle cx="42" cy="2" r="2" fill="currentColor" opacity="0.7"></circle><circle cx="2" cy="22" r="1.5" fill="currentColor" opacity="0.5"></circle></svg>
@@ -1277,18 +1277,18 @@
 <section id="travel" class="py-12 sm:py-16 md:py-20">
     <div class="container mx-auto px-3 sm:px-6 content-wrapper">
         <div class="text-center mb-6 sm:mb-8 md:mb-12">
-            <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 aos-init" id="travel-title" data-aos="fade-up">Travel &amp; Stay</h2>
-            <div class="botanical-divider mt-3 sm:mt-4 mb-4 sm:mb-6 aos-init" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 aos-init aos-animate" id="travel-title" data-aos="fade-up">Travel &amp; Stay</h2>
+            <div class="botanical-divider mt-3 sm:mt-4 mb-4 sm:mb-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                 <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
                     <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20" stroke="var(--cs)" stroke-width="2" fill="none" stroke-linecap="round"></path>
                     <circle cx="60" cy="20" r="4" fill="#F4E8A8" opacity="0.8"></circle><circle cx="100" cy="20" r="4" fill="var(--cs)" opacity="0.8"></circle><circle cx="140" cy="20" r="4" fill="#8E4232" opacity="0.8"></circle>
                     <path d="M 60,20 Q 55,15 58,12" stroke="var(--cp)" stroke-width="1.5" fill="none"></path><path d="M 100,20 Q 105,15 102,12" stroke="var(--cp)" stroke-width="1.5" fill="none"></path><path d="M 140,20 Q 135,25 138,28" stroke="var(--cp)" stroke-width="1.5" fill="none"></path>
                 </svg>
             </div>
-            <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-4 sm:mb-6 md:mb-8 aos-init" id="travel-subtitle" data-aos="fade-up" data-aos-delay="200">ACCOMMODATION &amp; TRANSPORTATION</p>
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-4 sm:mb-6 md:mb-8 aos-init aos-animate" id="travel-subtitle" data-aos="fade-up" data-aos-delay="200">ACCOMMODATION &amp; TRANSPORTATION</p>
         </div>
         <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-6xl mx-auto items-stretch">
-            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-8 shadow-xl border border-amber-100/50 aos-init" data-aos="fade-right">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-8 shadow-xl border border-amber-100/50 aos-init aos-animate" data-aos="fade-right">
                 <h3 class="text-xs sm:text-base md:text-xl lg:text-2xl font-serif-display text-amber-700 mb-2 sm:mb-4 md:mb-6 flex items-center gap-2"><span class="text-base sm:text-2xl md:text-3xl">🏨</span> Nearby Hotels</h3>
                 <div class="space-y-2 sm:space-y-4" id="travel-hotels">
         <div class="p-2 sm:p-3 md:p-4 bg-amber-50 rounded-lg hover:shadow-md transition-all duration-300">
@@ -1310,7 +1310,7 @@
             <a href="https://maps.app.goo.gl/luljetta" target="_blank" class="text-amber-700 hover:underline text-[8px] sm:text-xs md:text-sm mt-1 sm:mt-2 inline-block">View on Map →</a>
         </div></div>
             </div>
-            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-8 shadow-xl border border-amber-100/50 aos-init" data-aos="fade-left">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-5 md:p-8 shadow-xl border border-amber-100/50 aos-init aos-animate" data-aos="fade-left">
                 <h3 class="text-xs sm:text-base md:text-xl lg:text-2xl font-serif-display text-amber-700 mb-2 sm:mb-4 md:mb-6 flex items-center gap-2"><span class="text-base sm:text-2xl md:text-3xl">🚗</span> Getting There</h3>
                 <div class="space-y-2 sm:space-y-4" id="travel-transport">
         <div class="p-2 sm:p-3 md:p-4 bg-lime-50 rounded-lg">
@@ -1327,7 +1327,7 @@
         </div></div>
             </div>
         </div>
-        <div class="mt-6 sm:mt-8 md:mt-12 max-w-6xl mx-auto aos-init" data-aos="fade-up">
+        <div class="mt-6 sm:mt-8 md:mt-12 max-w-6xl mx-auto aos-init aos-animate" data-aos="fade-up">
             <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-4 md:p-6 shadow-xl border border-amber-100/50">
                 <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 text-center">Area Map</h3>
                 <div class="h-48 sm:h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg">
@@ -1780,11 +1780,11 @@ const CONFIG = {
     "background": {
         "bokeh": true,
         "dustParticles": true,
-        "sparkles": true,
+        "sparkles": false,
         "lightRays": true,
-        "atmosphericHaze": true,
-        "colorTemperature": true,
-        "floatingPetals": false,
+        "atmosphericHaze": false,
+        "colorTemperature": false,
+        "floatingPetals": true,
         "petalImages": [
             "https://exi0r.github.io/wedding/image/yellowpet1.png",
             "https://exi0r.github.io/wedding/image/yellowpet2.png",
@@ -1802,9 +1802,9 @@ const CONFIG = {
             "https://exi0r.github.io/wedding/image/ribbon2.png",
             "https://exi0r.github.io/wedding/image/ribbon3.png"
         ],
-        "particleAmount": 1,
-        "particleSize": 1,
-        "particleSpeed": 1
+        "particleAmount": 0.75,
+        "particleSize": 0.75,
+        "particleSpeed": 0.75
     },
     "dividers": {
         "show": true,
